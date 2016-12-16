@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carteirafuturo.view.ApresentacaoLabelsController">
+   <children>
+      <Label fx:id="descricaoLabel" alignment="CENTER" maxHeight="66.0" minHeight="66.0" prefHeight="66.0" prefWidth="420.0" text="descricaoLabel" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ScrollPane hbarPolicy="NEVER" layoutY="66.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="293.0" prefWidth="420.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+         <content>
+            <GridPane prefHeight="281.0" prefWidth="420.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="10.0" prefWidth="25.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="172.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="223.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text=" Dados Administrativos: " GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="TOP_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Tipo de Investimento: " />
+                        <Label text="Investidor: " />
+                        <Label text="Corretora: " />
+                        <Label text="Custos Operacionais: " />
+                        <Label text="Rentalibidade Esperada: " />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="tipoLabel" text="tipoLabel" />
+                        <Label fx:id="investidorLabel" text="investidorLabel" />
+                        <Label fx:id="corretoraLabel" text="corretoraLabel" />
+                        <Label fx:id="custosOperacionaisLabel" text="custosOperacionaisLabel" />
+                        <Label fx:id="rentabilidadeEsperadaLabel" text="rentabilidadeEsperadaLabel" />
+                     </children>
+                  </VBox>
+                  <Label text=" Aplicação:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <VBox alignment="TOP_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                     <children>
+                        <Label text="Data do Investimento: " />
+                        <Label text="Valor Investido: " />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <children>
+                        <Label fx:id="dataDoInvestimentoLabel" text="dataDoInvestimentoLabel" />
+                        <Label fx:id="valorInvestidoLabel" text="valorInvestidoLabel" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="atualizarCotacaoButton" defaultButton="true" layoutY="359.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" onAction="#atualizarCotacao" prefHeight="49.0" prefWidth="420.0" text="Atualizar Cotação" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   </children>
+</AnchorPane>
