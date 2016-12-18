@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class ApresentacaoLabelsController {
 
-	MainApp mainApp;	
+	MainApp mainApp;
 	
 	public InvestimentoFX i;
 
@@ -41,6 +41,12 @@ public class ApresentacaoLabelsController {
 
 	@FXML
 	private Label descricaoLabel;
+	
+    @FXML
+    private Label valorAtualLabel;
+
+    @FXML
+    private Label variacaoLabel;
 	
     @FXML
     private Button atualizarCotacaoButton;
@@ -75,9 +81,9 @@ public class ApresentacaoLabelsController {
 	
 	@FXML
 	public void atualizarCotacao(){
-		this.mainApp.showAtualizaCotacaoOverview(i);
+		this.mainApp.showAtualizaCotacaoOverview(i,this);
 	}
-
+	
 	
 	public void povoarDados(){
 		DadosAdministrativos dA = i.getDadosAdministrativos();
@@ -91,6 +97,11 @@ public class ApresentacaoLabelsController {
 		Aplicacao aI = i.getAplicacaoInicial();
 		this.dataDoInvestimentoLabel.setText(EstruturaData.estruturaData(aI.getDataInvestimento()));
 		this.valorInvestidoLabel.setText("R$ "+MascaraFinanceira.show(aI.getValorInvestido()));
+		
+		//Historico de rentabilidade
+		this.valorAtualLabel.setText("R$ "+MascaraFinanceira.show(String.valueOf(i.getValorAtual())));
+		this.variacaoLabel.setText(i.getLucratividade());
+		
 	}
 
 }

@@ -11,6 +11,7 @@ import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.view.ApresentacaoLabelsController;
 import com.carteirafuturo.view.AtualizaCotacaoController;
+import com.carteirafuturo.view.CadastrarTipoDeInvestimentoController;
 import com.carteirafuturo.view.HistoricoDeRentabilidadeController;
 import com.carteirafuturo.view.InvestimentoController;
 import com.carteirafuturo.view.TelaInicialController;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 	
 	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentos = FXCollections.observableArrayList();
+	public ObservableList<TipoDeInvestimento> aGrandeListaDeTiposDeInvestimento = FXCollections.observableArrayList();
 
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
@@ -51,8 +53,6 @@ public class MainApp extends Application {
 		iFx.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade("1", "2016-12-16", 50200.00));
 		iFx.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade("1", "2017-12-16", 50300.00));
 
-		
-		
 
 		initRootLayout();
 
@@ -181,7 +181,7 @@ public class MainApp extends Application {
 
 	}
 	
-	public void showAtualizaCotacaoOverview(InvestimentoFX i) {
+	public void showAtualizaCotacaoOverview(InvestimentoFX i, ApresentacaoLabelsController apCtrl) {
 		try {
 
 			// Load o FXML
@@ -192,6 +192,7 @@ public class MainApp extends Application {
 			// Dá ao controlador acesso ao MainApp
 			AtualizaCotacaoController controller = loader.getController();
 			controller.setMainApp(this);
+			controller.setApresentacaoLabelsController(apCtrl);
 			
 
 			// Criando o dialogStage
@@ -212,6 +213,45 @@ public class MainApp extends Application {
 			//Setando o investimento que vai ser trabalhado
 			controller.setInvestimento(i);
 
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showCadastrarTipoDeInvestimento() {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/CadastrarTipoDeInvestimentoOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			CadastrarTipoDeInvestimentoController controller = loader.getController();
+			controller.setMainApp(this);
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Cadastrar Tipo de Investimento");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
 			// Show
 			
 			dialogStage.showAndWait();

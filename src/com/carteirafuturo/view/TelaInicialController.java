@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 public class TelaInicialController {
 
 	MainApp mainApp;
+	
 
 	@FXML
 	private TableView<InvestimentoFX> investimentosTableView;
@@ -19,13 +20,23 @@ public class TelaInicialController {
 	private TableColumn<InvestimentoFX, String> dataAplicacaoTableColumn;
 	@FXML
 	private TableColumn<InvestimentoFX, String> valorInvestidoTableColumn;
+	@FXML
+	private TableColumn<InvestimentoFX, String> descricaoTableColumn;
+	@FXML
+	private TableColumn<InvestimentoFX, String> valorAtualTableColumn;
+	@FXML
+	private TableColumn<InvestimentoFX, String> LucratividadeTableColumn;
 
 	/**
 	 * Ligando ao main
 	 */
 	public void setMainApp(MainApp main) {
 		this.mainApp = main;
-		investimentosTableView.setItems(main.aGrandeListaDeInvestimentos);
+		povoarTabela();
+	}
+
+	public void povoarTabela() {
+		investimentosTableView.setItems(this.mainApp.aGrandeListaDeInvestimentos);
 	}
 
 	/**
@@ -37,28 +48,20 @@ public class TelaInicialController {
 				.estruturaData(cellData.getValue().getAplicacaoInicial().dataInvestimentoProperty()));
 		valorInvestidoTableColumn.setCellValueFactory(cellData -> MascaraFinanceira
 				.showProperty(cellData.getValue().getAplicacaoInicial().valorInvestidoProperty()));
+		descricaoTableColumn
+				.setCellValueFactory(cellData -> cellData.getValue().getDadosAdministrativos().descricaoProperty());
+		valorAtualTableColumn.setCellValueFactory(
+				cellData -> MascaraFinanceira.showProperty(cellData.getValue().valorAtualStringProperty()));
+		LucratividadeTableColumn.setCellValueFactory(cellData -> cellData.getValue().lucratividadePercentualProperty());
 
-		//centralizando
+		// centralizando
 		investimentosTableView.getColumns().forEach(c -> centralizaTableColumn(c));
-		
-		
-		// Detecta o duplo click do mouse e apresenta o alert perguntando se
-				// quer atender aquele cliente.
-				// Caso ok, o cliente é carregado no formulário
+		// Detecta o duplo click do mouse e apresenta detalhamento
 		investimentosTableView.setOnMousePressed((event) -> {
-					if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-						
-							// Obtem o id do atendimento
-							//String idCli = atendimentosTableView.getSelectionModel().getSelectedItem().getIdCliente();
-							//String idAte = atendimentosTableView.getSelectionModel().getSelectedItem().getIdAtendimento();
-							// Passa o id para o controller do AtendendoCliente
-							//this.mainApp.getAtendendoClienteController().ConsultarClientePeloId(idCli);
-							//this.mainApp.getAtendendoClienteController().ConsultarAtendimentoPeloId(idAte);
-							
-							this.mainApp.showInvestimentoOverview(investimentosTableView.getSelectionModel().getSelectedItem());
-						}
-					
-				});
+			if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+				this.mainApp.showInvestimentoOverview(investimentosTableView.getSelectionModel().getSelectedItem());
+			}
+		});
 
 	}
 

@@ -1,24 +1,19 @@
 package com.carteirafuturo.view;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 import com.carteirafuturo.MainApp;
 import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.InvestimentoFX;
-import com.carteirafuturo.model.TextFieldMoney;
+import com.carteirafuturo.model.TipoDeInvestimento;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AtualizaCotacaoController {
+public class CadastrarTipoDeInvestimentoController {
 
 	MainApp mainApp;
-	ApresentacaoLabelsController apLabelCtrl;
-	
-	InvestimentoFX i;
 
 	// Palco desse dialog
 	private Stage dialogStage;
@@ -27,11 +22,9 @@ public class AtualizaCotacaoController {
 	private boolean okClicked = false;
 
 	@FXML
-	private DatePicker dataDatePicker;
-
-	@FXML
-	private TextFieldMoney valorTextField;
-
+	private TextField nomeTextField;
+	
+	
 	/**
 	 * Ligando ao main
 	 */
@@ -43,10 +36,7 @@ public class AtualizaCotacaoController {
 	 * Inicializa a classe controller. Método chamado ao carregar o fxml
 	 */
 	@FXML
-	private void initialize() {
-		// setando a data de hoje no local date
-		dataDatePicker.setValue(LocalDate.now());
-	}
+	private void initialize() {}
 
 	/**
 	 * Define o palco deste dialog. Usado para fecha-lo, por exemplo
@@ -55,10 +45,6 @@ public class AtualizaCotacaoController {
 	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
-	}
-	
-	public void setInvestimento(InvestimentoFX i){
-		this.i = i;
 	}
 	
 
@@ -74,19 +60,20 @@ public class AtualizaCotacaoController {
 	 */
 	@FXML
 	private void handleOk() {
-		String data = dataDatePicker.getValue().toString();
-		String valor = valorTextField.getCleanValue();
+		String nome = nomeTextField.getText();
+		
 
 		okClicked = true;
 
-		// Criando a variação
-		i.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade(i.getId(),data, new Double(valor)));
+		// Criando o nome tipo
+		TipoDeInvestimento tipo = new TipoDeInvestimento(nome);
+		this.mainApp.aGrandeListaDeTiposDeInvestimento.add(tipo);
+		
 
 		// Colocando a variação no db
 		
-		
 		dialogStage.close();
-		apLabelCtrl.povoarDados();
+	
 
 	}
 
@@ -98,8 +85,9 @@ public class AtualizaCotacaoController {
 		dialogStage.close();
 	}
 
-	public void setApresentacaoLabelsController(ApresentacaoLabelsController apCtrl) {
-		this.apLabelCtrl = apCtrl;		
-	}
+	
+
+	
+	
 
 }
