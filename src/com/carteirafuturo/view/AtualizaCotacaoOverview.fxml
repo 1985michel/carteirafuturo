@@ -13,8 +13,8 @@
    <children>
       <HBox alignment="CENTER_RIGHT" layoutX="-86.0" layoutY="113.0" spacing="2.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
          <children>
-            <Button cancelButton="true" mnemonicParsing="false" prefHeight="39.0" prefWidth="91.0" text="Cancelar" />
-            <Button defaultButton="true" mnemonicParsing="false" prefHeight="39.0" prefWidth="163.0" text="Gravar" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" prefHeight="39.0" prefWidth="91.0" text="Cancelar" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleOk" prefHeight="39.0" prefWidth="163.0" text="Gravar" />
          </children>
       </HBox>
       <Label layoutX="199.0" layoutY="105.0" text="Data" />
