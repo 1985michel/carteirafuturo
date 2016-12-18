@@ -68,5 +68,26 @@ public class TelaInicialController {
 	private void centralizaTableColumn(TableColumn tc) {
 		tc.setStyle("-fx-alignment: CENTER;");
 	}
+	
+ 
+	@FXML
+	private void showCadastrarTipoDeInvestimento(){
+		this.mainApp.showCadastrarTipoDeInvestimento();
+	}
+	
+	@FXML
+	private void showCadastrarInvestidor(){
+		this.mainApp.showCadastrarInvestidor();
+	}
+	
+	@FXML
+	private void showCadastrarCorretora(){
+		this.mainApp.showCadastrarCorretora();
+	}
+	
+	@FXML
+	private void showCadastrarInvestimento(){
+		this.mainApp.showCadastrarInvestimento();
+	}
 
 }

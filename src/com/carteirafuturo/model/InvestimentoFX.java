@@ -45,7 +45,8 @@ public class InvestimentoFX {
 		this.aplicacaoInicial = aplicacaoInicial;
 		this.dadosAdministrativos = dadosAdministrativos;
 		this.listHistoricoDeRentabilidade = FXCollections.observableArrayList();
-		this.valorAtual = new SimpleDoubleProperty();
+		this.setValorAtual(this.aplicacaoInicial.getValorInvestido());
+		
 	}
 
 	public InvestimentoFX(String id, Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos) {
@@ -134,8 +135,8 @@ public class InvestimentoFX {
 		return this.valorAtualProperty().get();
 	}
 
-	public final void setValorAtual(final double rentabilidadeReal) {
-		this.valorAtualProperty().set(rentabilidadeReal);
+	public final void setValorAtual(final double valorAtual) {
+		this.valorAtual = new SimpleDoubleProperty(valorAtual);
 		this.lucratividade = CalcularVariacao.calcProperty(this.getAplicacaoInicial().getValorInvestido(), this.getValorAtual());
 	}
 

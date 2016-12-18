@@ -41,7 +41,12 @@ public class Investidor {
 		this.nomeProperty().set(nome);
 	}
 	
-	
+	@Override
+	public String toString() {
+		// return "TipoDeInvestimento [id=" + id + ", nome=" + nome + ",
+		// calculadoraDeCustos=" + calculadoraDeCustos.getId() + "]";
+		return this.getNome();
+	}
 	
 
 }

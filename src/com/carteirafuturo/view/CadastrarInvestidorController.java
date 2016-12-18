@@ -1,13 +1,16 @@
 package com.carteirafuturo.view;
 
 import com.carteirafuturo.MainApp;
+import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.TipoDeInvestimento;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CadastrarTipoDeInvestimentoController {
+public class CadastrarInvestidorController {
 
 	MainApp mainApp;
 
@@ -19,20 +22,32 @@ public class CadastrarTipoDeInvestimentoController {
 
 	@FXML
 	private TextField nomeTextField;
-	
-	
+
+	@FXML
+	private TableView<Investidor> investidoresTableView;
+
+	@FXML
+	private TableColumn<Investidor, String> IdTableColumn;
+
+	@FXML
+	private TableColumn<Investidor, String> nomeTableColumn;
+
 	/**
 	 * Ligando ao main
 	 */
 	public void setMainApp(MainApp main) {
 		this.mainApp = main;
+		this.investidoresTableView.setItems(this.mainApp.aGrandeListaDeInvestidores);
 	}
 
 	/**
 	 * Inicializa a classe controller. Método chamado ao carregar o fxml
 	 */
 	@FXML
-	private void initialize() {}
+	private void initialize() {
+		IdTableColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
+		nomeTableColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+	}
 
 	/**
 	 * Define o palco deste dialog. Usado para fecha-lo, por exemplo
@@ -42,7 +57,6 @@ public class CadastrarTipoDeInvestimentoController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
-	
 
 	/**
 	 * Retorna true se o ok for clicado
@@ -57,19 +71,16 @@ public class CadastrarTipoDeInvestimentoController {
 	@FXML
 	private void handleOk() {
 		String nome = nomeTextField.getText();
-		
 
 		okClicked = true;
 
 		// Criando o nome tipo
-		TipoDeInvestimento tipo = new TipoDeInvestimento("1",nome);
-		this.mainApp.aGrandeListaDeTiposDeInvestimento.add(tipo);
-		
+		Investidor investidor = new Investidor("1", nome);
+		this.mainApp.aGrandeListaDeInvestidores.add(investidor);
 
 		// Colocando a variação no db
-		
+
 		dialogStage.close();
-	
 
 	}
 
@@ -80,10 +91,5 @@ public class CadastrarTipoDeInvestimentoController {
 	private void handleCancel() {
 		dialogStage.close();
 	}
-
-	
-
-	
-	
 
 }

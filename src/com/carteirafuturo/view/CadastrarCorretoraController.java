@@ -1,13 +1,14 @@
 package com.carteirafuturo.view;
 
+
 import com.carteirafuturo.MainApp;
-import com.carteirafuturo.model.TipoDeInvestimento;
+import com.carteirafuturo.model.Corretora;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CadastrarTipoDeInvestimentoController {
+public class CadastrarCorretoraController {
 
 	MainApp mainApp;
 
@@ -19,8 +20,7 @@ public class CadastrarTipoDeInvestimentoController {
 
 	@FXML
 	private TextField nomeTextField;
-	
-	
+
 	/**
 	 * Ligando ao main
 	 */
@@ -32,7 +32,8 @@ public class CadastrarTipoDeInvestimentoController {
 	 * Inicializa a classe controller. Método chamado ao carregar o fxml
 	 */
 	@FXML
-	private void initialize() {}
+	private void initialize() {
+	}
 
 	/**
 	 * Define o palco deste dialog. Usado para fecha-lo, por exemplo
@@ -42,7 +43,6 @@ public class CadastrarTipoDeInvestimentoController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
-	
 
 	/**
 	 * Retorna true se o ok for clicado
@@ -57,19 +57,16 @@ public class CadastrarTipoDeInvestimentoController {
 	@FXML
 	private void handleOk() {
 		String nome = nomeTextField.getText();
-		
 
 		okClicked = true;
 
 		// Criando o nome tipo
-		TipoDeInvestimento tipo = new TipoDeInvestimento("1",nome);
-		this.mainApp.aGrandeListaDeTiposDeInvestimento.add(tipo);
-		
+		Corretora corretora = new Corretora("1",nome);
+		this.mainApp.aGrandeListaDeCorretoras.add(corretora);
 
 		// Colocando a variação no db
-		
+
 		dialogStage.close();
-	
 
 	}
 
@@ -80,10 +77,5 @@ public class CadastrarTipoDeInvestimentoController {
 	private void handleCancel() {
 		dialogStage.close();
 	}
-
-	
-
-	
-	
 
 }

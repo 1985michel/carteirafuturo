@@ -11,6 +11,9 @@ import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.view.ApresentacaoLabelsController;
 import com.carteirafuturo.view.AtualizaCotacaoController;
+import com.carteirafuturo.view.CadastrarCorretoraController;
+import com.carteirafuturo.view.CadastrarInvestidorController;
+import com.carteirafuturo.view.CadastrarInvestimentoController;
 import com.carteirafuturo.view.CadastrarTipoDeInvestimentoController;
 import com.carteirafuturo.view.HistoricoDeRentabilidadeController;
 import com.carteirafuturo.view.InvestimentoController;
@@ -30,6 +33,8 @@ public class MainApp extends Application {
 	
 	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentos = FXCollections.observableArrayList();
 	public ObservableList<TipoDeInvestimento> aGrandeListaDeTiposDeInvestimento = FXCollections.observableArrayList();
+	public ObservableList<Investidor> aGrandeListaDeInvestidores = FXCollections.observableArrayList();
+	public ObservableList<Corretora> aGrandeListaDeCorretoras = FXCollections.observableArrayList();
 
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
@@ -52,7 +57,21 @@ public class MainApp extends Application {
 		aGrandeListaDeInvestimentos.add(iFx);
 		iFx.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade("1", "2016-12-16", 50200.00));
 		iFx.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade("1", "2017-12-16", 50300.00));
+		aGrandeListaDeCorretoras.add(new Corretora("0","XP"));
+		aGrandeListaDeInvestidores.add(new Investidor("0","Michel"));
+		aGrandeListaDeTiposDeInvestimento.add(new TipoDeInvestimento("0","Poupança"));
+		
+		for (Corretora c : aGrandeListaDeCorretoras) {
+			System.out.println("Corretora: "+c);
+		}
+		
+		for (TipoDeInvestimento t : aGrandeListaDeTiposDeInvestimento) {
+			System.out.println(t);
+		}
 
+		for (Investidor i : aGrandeListaDeInvestidores) {
+			System.out.println(i);
+		}
 
 		initRootLayout();
 
@@ -262,5 +281,124 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	public void showCadastrarInvestidor() {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/CadastrarInvestidorOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			CadastrarInvestidorController controller = loader.getController();
+			controller.setMainApp(this);
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Cadastrar Investidor");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showCadastrarCorretora() {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/CadastrarCorretoraOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			CadastrarCorretoraController controller = loader.getController();
+			controller.setMainApp(this);
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Cadastrar Corretora");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showCadastrarInvestimento() {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/CadastrarInvestimentoOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			CadastrarInvestimentoController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.povoarComboBoxs();
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Cadastrar Investimento");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }
