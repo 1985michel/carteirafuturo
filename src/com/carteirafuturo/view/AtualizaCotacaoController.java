@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import com.carteirafuturo.MainApp;
+import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TextFieldMoney;
 
@@ -78,7 +79,7 @@ public class AtualizaCotacaoController {
 		okClicked = true;
 
 		// Criando a variação
-		i.getHistoricoDeRentabilidade().addMapHistoricoDeRentabilidade(data, new Double(valor));
+		i.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade(i.getId(),data, new Double(valor)));
 
 		// Colocando a variação no db
 		

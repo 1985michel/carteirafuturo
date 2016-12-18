@@ -5,11 +5,13 @@ import java.io.IOException;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.DadosAdministrativos;
+import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.view.ApresentacaoLabelsController;
 import com.carteirafuturo.view.AtualizaCotacaoController;
+import com.carteirafuturo.view.HistoricoDeRentabilidadeController;
 import com.carteirafuturo.view.InvestimentoController;
 import com.carteirafuturo.view.TelaInicialController;
 
@@ -46,8 +48,8 @@ public class MainApp extends Application {
 		InvestimentoFX iFx = new InvestimentoFX(aplicacao, adm);
 		iFx.setId("1");
 		aGrandeListaDeInvestimentos.add(iFx);
-		iFx.getHistoricoDeRentabilidade().addMapHistoricoDeRentabilidade("2016-12-16", 50200.00);
-		iFx.getHistoricoDeRentabilidade().addMapHistoricoDeRentabilidade("2017-12-16", 50300.00);
+		iFx.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade("1", "2016-12-16", 50200.00));
+		iFx.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade("1", "2017-12-16", 50300.00));
 
 		
 		
@@ -105,6 +107,8 @@ public class MainApp extends Application {
 			// Dá ao controlador acesso ao MainApp
 			InvestimentoController controller = loader.getController();
 			controller.setMainApp(this);
+			//Setando o investimento a ser trabalhado
+			controller.setInvestimento(i);
 
 			// Criando o dialogStage
 			Stage dialogStage = new Stage();
@@ -121,8 +125,7 @@ public class MainApp extends Application {
 			// Dando ao controlador poderes sobre seu próprio dialogStage
 			controller.setDialogStage(dialogStage);
 			
-			//Setando o investimento que vai ser trabalhado
-			controller.investimento = i;
+			
 
 			// Show
 			this.showApresentacaoLabels(controller.areaDeTrabalho, i);
@@ -151,6 +154,27 @@ public class MainApp extends Application {
 			// Define o person overview dentro do root layout.
 			areaDeTrabalhoBorderPane.setCenter(cadInvOverView);
 			controller.povoarDados();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void showHistoricoDeRentabilidade(BorderPane areaDeTrabalhoBorderPane, InvestimentoFX i) {
+		try {
+			// Carrega o person overview.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/HistoricoDeRentabilidadeOverview.fxml"));
+			AnchorPane cadInvOverView = (AnchorPane) loader.load();
+
+			// Atribuindo o controller e o mainApp
+			HistoricoDeRentabilidadeController controller = loader.getController();
+			
+			controller.setInvestimento(i);
+			controller.setMainApp(this);
+
+			// Define o person overview dentro do root layout.
+			areaDeTrabalhoBorderPane.setCenter(cadInvOverView);			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

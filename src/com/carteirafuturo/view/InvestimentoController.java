@@ -24,6 +24,10 @@ public class InvestimentoController {
     	this.mainApp = main;
     }
     
+    public void setInvestimento(InvestimentoFX i){
+    	this.investimento = i;
+    }
+    
     /**
 	 * Define o palco deste dialog. Usado para fecha-lo, por exemplo
 	 * 
@@ -32,6 +36,18 @@ public class InvestimentoController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
+	
+	@FXML
+	public void showHistoricoDeRentabilidade(){
+		this.mainApp.showHistoricoDeRentabilidade(this.areaDeTrabalho, this.investimento);
+	}
+	
+	@FXML
+	public void showApresentacaoLabels(){
+		this.mainApp.showApresentacaoLabels(this.areaDeTrabalho, this.investimento);
+	}
+	
+	
     
     
 

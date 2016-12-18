@@ -1,8 +1,13 @@
 package com.carteirafuturo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class InvestimentoFX {
 	
@@ -18,7 +23,7 @@ public class InvestimentoFX {
 	DoubleProperty rentabilidadeReal;
 
 	// Sobre o historio de rentabilidade
-	HistoricoDeRentabilidade historicoDeRentabilidade;
+	ObservableList<HistoricoDeRentabilidade> listHistoricoDeRentabilidade;
 
 	// Sobre o futuro - projeções
 	Projecao projecao;
@@ -32,7 +37,7 @@ public class InvestimentoFX {
 	public InvestimentoFX(Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos){
 		this.aplicacaoInicial = aplicacaoInicial;		
 		this.dadosAdministrativos = dadosAdministrativos;
-		this.historicoDeRentabilidade = new HistoricoDeRentabilidade();
+		this.listHistoricoDeRentabilidade = FXCollections.observableArrayList();
 	}
 	
 	
@@ -64,13 +69,18 @@ public class InvestimentoFX {
 	}
 
 
-	public HistoricoDeRentabilidade getHistoricoDeRentabilidade() {
-		return historicoDeRentabilidade;
+	public ObservableList<HistoricoDeRentabilidade> getListHistoricoDeRentabilidade() {
+		return this.listHistoricoDeRentabilidade;
 	}
 
 
-	public void setHistoricoDeRentabilidade(HistoricoDeRentabilidade historicoDeRentabilidade) {
-		this.historicoDeRentabilidade = historicoDeRentabilidade;
+	public void setListHistoricoDeRentabilidade(List<HistoricoDeRentabilidade> listHistoricoDeRentabilidade) {
+		this.listHistoricoDeRentabilidade.clear();
+		this.listHistoricoDeRentabilidade.addAll(listHistoricoDeRentabilidade);
+	}
+	
+	public void addListHistoricoDeRentabilidade(HistoricoDeRentabilidade hist){
+		this.listHistoricoDeRentabilidade.add(hist);		
 	}
 
 
