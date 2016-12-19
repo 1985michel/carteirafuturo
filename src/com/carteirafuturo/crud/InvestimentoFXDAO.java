@@ -3,9 +3,14 @@ package com.carteirafuturo.crud;
 
 import java.sql.ResultSet;
 
+import com.carteirafuturo.MainApp;
+import com.carteirafuturo.model.Aplicacao;
+import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.DadosAdministrativos;
+import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
+import com.carteirafuturo.util.MainListsAdmin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,8 +62,10 @@ public class InvestimentoFXDAO {
 
 	}
 
-	public static ObservableList<InvestimentoFX> getTodosInvestimentos() {
+	
+	public static ObservableList<InvestimentoFX> getTodosInvestimentos(MainApp main) {
 
+		MainListsAdmin listsAdmin = new MainListsAdmin(main);
 		int id = 0;
 		ObservableList<InvestimentoFX> lista = FXCollections.observableArrayList();
 
@@ -71,14 +78,19 @@ public class InvestimentoFXDAO {
 
 			while (resultSet.next()) {
 				String idt = resultSet.getInt("id") + "";
-				TipoDeInvestimento tipo = new TipoDeInvestimento(id, nome)
-				DadosAdministrativos dA = new DadosAdministrativos(tipo, descricao, rentabilidadeEsperada, investidor, corretora)
+				TipoDeInvestimento tipo = listsAdmin.getTipoDeInvestimentoById(resultSet.getString("idTipo"));
+				Corretora corretora = listsAdmin.getCorretoraById(resultSet.getString("idCorretora"));
+				Investidor investidor = listsAdmin.getInvestidorById(resultSet.getString("idInvestidor"));
+				String descricao = resultSet.getString("descricao");
+				double valor = new Double(resultSet.getString("valor"));
+				double rentabilidadeEsperada = new Double(resultSet.getString("rentabilidadeEsperada"));
+				String plano = resultSet.getString("plano");
+				String data = resultSet.getString("data");
 				
-				/*
-				lista.add(new InvestimentoFX(idt, resultSet.getString("nome"), resultSet.getString("valor"),
-						resultSet.getString("data"), resultSet.getString("plano"),
-						resultSet.getString("idtipoinvestimento"), resultSet.getString("idInvestidor")));
-						*/
+				DadosAdministrativos dA = new DadosAdministrativos(tipo, descricao, rentabilidadeEsperada, plano, investidor, corretora);
+				Aplicacao aI = new Aplicacao(data, valor);
+				
+				lista.add(new InvestimentoFX(aI,dA));
 			}
 
 		} catch (Exception e) {
@@ -95,6 +107,7 @@ public class InvestimentoFXDAO {
 
 	}
 
+	/*
 	public static ObservableList<Investimento> getInvestimentosPorInvestidor(String idInvestidor) {
 
 		int id = 0;
@@ -199,5 +212,6 @@ public class InvestimentoFXDAO {
 			}
 		}
 	}
+	*/
 
 }

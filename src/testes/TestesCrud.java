@@ -1,6 +1,10 @@
 package testes;
 
+import java.sql.SQLException;
+
+import com.carteirafuturo.crud.CRUD;
 import com.carteirafuturo.crud.CorretoraDAO;
+import com.carteirafuturo.crud.DBFactory;
 import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.TipoDeInvestimento;
@@ -9,6 +13,7 @@ public class TestesCrud {
 
 	public static void main(String... strings) {
 		
+		/*
 		TipoDeInvestimento tipo = new TipoDeInvestimento("Tesouro Direto");
 		TipoDeInvestimentoDAO.registrarTipoDeInvestimento(tipo);
 		
@@ -28,10 +33,10 @@ public class TestesCrud {
 			System.out.println(co.getId()+" - "+co.getNome());
 		}
 		
-		
+		*/
 		
 	
-		/*
+		
 		DBFactory dbf = new DBFactory();
 		try {
 			dbf.criarBancos(new CRUD());
@@ -42,7 +47,7 @@ public class TestesCrud {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+		
 	}
 
 }

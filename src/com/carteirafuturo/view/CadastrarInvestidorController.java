@@ -1,6 +1,7 @@
 package com.carteirafuturo.view;
 
 import com.carteirafuturo.MainApp;
+import com.carteirafuturo.crud.InvestidorDAO;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.TipoDeInvestimento;
 
@@ -75,12 +76,15 @@ public class CadastrarInvestidorController {
 		okClicked = true;
 
 		// Criando o nome tipo
-		Investidor investidor = new Investidor("1", nome);
+		Investidor investidor = new Investidor(nome);
+		InvestidorDAO.registrarInvestidor(investidor);
 		this.mainApp.aGrandeListaDeInvestidores.add(investidor);
+		
 
 		// Colocando a variação no db
 
 		dialogStage.close();
+		
 
 	}
 

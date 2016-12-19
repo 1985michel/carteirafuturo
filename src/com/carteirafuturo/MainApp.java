@@ -2,6 +2,7 @@ package com.carteirafuturo;
 
 import java.io.IOException;
 
+import com.carteirafuturo.crud.InvestidorDAO;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.DadosAdministrativos;
@@ -44,6 +45,8 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Carteira Futuro");
+		
+		carregaListas();
 		
 		Aplicacao aplicacao = new Aplicacao("2016-12-15", 50000.00);
 		
@@ -398,6 +401,11 @@ public class MainApp extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void carregaListas(){
+		this.aGrandeListaDeInvestidores.addAll(InvestidorDAO.getTodosInvestidores());
+		
 	}
 
 
