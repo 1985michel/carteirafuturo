@@ -7,7 +7,9 @@ import com.carteirafuturo.util.MascaraFinanceira;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 
 public class TelaInicialController {
 
@@ -62,6 +64,20 @@ public class TelaInicialController {
 				this.mainApp.showInvestimentoOverview(investimentosTableView.getSelectionModel().getSelectedItem());
 			}
 		});
+		//Colocando tooltip
+		investimentosTableView.setRowFactory(tv -> new TableRow<InvestimentoFX>() {
+	            private Tooltip tooltip = new Tooltip();
+	            @Override
+	            public void updateItem(InvestimentoFX inves, boolean empty) {
+	                super.updateItem(inves, empty);
+	                if (inves == null) {
+	                    setTooltip(null);
+	                } else {
+	                    tooltip.setText(inves.getDadosAdministrativos().getPlano());
+	                    setTooltip(tooltip);
+	                }
+	            }
+	        });
 
 	}
 
