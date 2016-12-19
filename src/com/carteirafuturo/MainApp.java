@@ -51,7 +51,7 @@ public class MainApp extends Application {
 		TipoDeInvestimento tipo = new TipoDeInvestimento("Poupanca");
 		Investidor investidor = new Investidor("Miguel");
 		Corretora corretora = new Corretora("XP Investimentos");
-		DadosAdministrativos adm = new DadosAdministrativos(tipo, "Poupanca do Miguel", 0.9, investidor, corretora);
+		DadosAdministrativos adm = new DadosAdministrativos(tipo, "Poupanca do Miguel", 0.9,"Reserva de Emergência", investidor, corretora);
 		InvestimentoFX iFx = new InvestimentoFX(aplicacao, adm);
 		iFx.setId("1");
 		aGrandeListaDeInvestimentos.add(iFx);

@@ -10,6 +10,7 @@ public class Investidor {
 
 	public Investidor(String nome) {
 		this.nome = new SimpleStringProperty(nome);
+		this.id = new SimpleStringProperty("");
 	}
 
 	public Investidor(String id, String nome) {

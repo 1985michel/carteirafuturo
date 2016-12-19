@@ -19,6 +19,7 @@ public class DadosAdministrativos {
 	TipoDeInvestimento tipo;
 	StringProperty descricao;
 	DoubleProperty rentabilidadeEsperada;
+	StringProperty plano;
 
 	Investidor investidor;
 	Corretora corretora;
@@ -26,12 +27,13 @@ public class DadosAdministrativos {
 	// Custos Operacionais
 	CustosOperacionais custosOperacionais;
 
-	public DadosAdministrativos(TipoDeInvestimento tipo, String descricao, double rentabilidadeEsperada, Investidor investidor,
+	public DadosAdministrativos(TipoDeInvestimento tipo, String descricao, double rentabilidadeEsperada, String plano, Investidor investidor,
 			Corretora corretora) {
 		
 		this.tipo = tipo;
 		this.descricao = new SimpleStringProperty(descricao);
 		this.rentabilidadeEsperada = new SimpleDoubleProperty(rentabilidadeEsperada);
+		this.plano = new SimpleStringProperty(plano);
 		this.investidor = investidor;
 		this.corretora = corretora;
 
@@ -94,6 +96,21 @@ public class DadosAdministrativos {
 	public final void setRentabilidadeEsperada(final double rentabilidadeEsperada) {
 		this.rentabilidadeEsperadaProperty().set(rentabilidadeEsperada);
 	}
+
+	public final StringProperty planoProperty() {
+		return this.plano;
+	}
+	
+
+	public final java.lang.String getPlano() {
+		return this.planoProperty().get();
+	}
+	
+
+	public final void setPlano(final java.lang.String plano) {
+		this.planoProperty().set(plano);
+	}
+	
 	
 	
 	

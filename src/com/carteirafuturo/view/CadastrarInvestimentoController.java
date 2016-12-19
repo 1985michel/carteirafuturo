@@ -14,6 +14,7 @@ import com.carteirafuturo.model.TipoDeInvestimento;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -51,6 +52,9 @@ public class CadastrarInvestimentoController {
 
 	@FXML
 	private TextField rentabilidadeEsperadaTextField;
+	
+	@FXML
+    private TextArea planoTextArea;
 
 	/**
 	 * Ligando ao main
@@ -123,9 +127,10 @@ public class CadastrarInvestimentoController {
 		String rentabilidadeEsperada = rentabilidadeEsperadaTextField.getText();
 		String data = dataDaAplicacaoDatePicker.getValue().toString();
 		String valor = valorInvestidorMoneyTextField.getText();
+		String plano = planoTextArea.getText();
 		
 		DadosAdministrativos dadosAdministrativos = new DadosAdministrativos(
-				tipoSelecionado, descricao,new Double(rentabilidadeEsperada), investidorSelecionado, corretoraSelecionada);
+				tipoSelecionado, descricao,new Double(rentabilidadeEsperada), plano, investidorSelecionado, corretoraSelecionada);
 		
 		Aplicacao aplicacaoInicial = new Aplicacao(data,new Double(valor));
 		

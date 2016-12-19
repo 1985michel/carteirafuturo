@@ -10,6 +10,8 @@ public class Corretora {
 
 	public Corretora(String nome) {
 		this.nome = new SimpleStringProperty(nome);
+		this.id = new SimpleStringProperty("");
+
 	}
 	
 	public Corretora(String id,String nome){
