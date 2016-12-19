@@ -1,9 +1,12 @@
 package com.carteirafuturo.view;
 
 import com.carteirafuturo.MainApp;
+import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.TipoDeInvestimento;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -19,6 +22,14 @@ public class CadastrarTipoDeInvestimentoController {
 
 	@FXML
 	private TextField nomeTextField;
+    @FXML
+    private TableView<TipoDeInvestimento> tipoDeInvestimentoTableView;
+
+    @FXML
+    private TableColumn<TipoDeInvestimento, String> idTableColumn;
+
+    @FXML
+    private TableColumn<TipoDeInvestimento, String> nomeTableColumn;
 	
 	
 	/**
@@ -26,13 +37,17 @@ public class CadastrarTipoDeInvestimentoController {
 	 */
 	public void setMainApp(MainApp main) {
 		this.mainApp = main;
+		this.tipoDeInvestimentoTableView.setItems(this.mainApp.aGrandeListaDeTiposDeInvestimento);
 	}
 
 	/**
 	 * Inicializa a classe controller. Método chamado ao carregar o fxml
 	 */
 	@FXML
-	private void initialize() {}
+	private void initialize() {
+		idTableColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
+		nomeTableColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+	}
 
 	/**
 	 * Define o palco deste dialog. Usado para fecha-lo, por exemplo
@@ -62,7 +77,8 @@ public class CadastrarTipoDeInvestimentoController {
 		okClicked = true;
 
 		// Criando o nome tipo
-		TipoDeInvestimento tipo = new TipoDeInvestimento("1",nome);
+		TipoDeInvestimento tipo = new TipoDeInvestimento(nome);
+		TipoDeInvestimentoDAO.registrarTipoDeInvestimento(tipo);
 		this.mainApp.aGrandeListaDeTiposDeInvestimento.add(tipo);
 		
 
