@@ -2,6 +2,7 @@ package com.carteirafuturo;
 
 import java.io.IOException;
 
+import com.carteirafuturo.crud.CorretoraDAO;
 import com.carteirafuturo.crud.InvestidorDAO;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
@@ -405,7 +406,7 @@ public class MainApp extends Application {
 	
 	public void carregaListas(){
 		this.aGrandeListaDeInvestidores.addAll(InvestidorDAO.getTodosInvestidores());
-		
+		this.aGrandeListaDeCorretoras.addAll(CorretoraDAO.getTodosCorretoraes());
 	}
 
 
