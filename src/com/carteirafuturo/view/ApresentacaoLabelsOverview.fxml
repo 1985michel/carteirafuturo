@@ -24,8 +24,7 @@
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="200.0" minHeight="140.0" prefHeight="140.0" vgrow="ALWAYS" />
                   <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
@@ -47,6 +46,7 @@
                         <Label text="Corretora: " />
                         <Label text="Custos Operacionais: " />
                         <Label text="Rentalibidade Esperada: " />
+                        <Label layoutX="52.0" layoutY="98.0" text="Plano: " />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
@@ -56,9 +56,10 @@
                         <Label fx:id="corretoraLabel" text="corretoraLabel" />
                         <Label fx:id="custosOperacionaisLabel" text="custosOperacionaisLabel" />
                         <Label fx:id="rentabilidadeEsperadaLabel" text="rentabilidadeEsperadaLabel" />
+                        <Label fx:id="planoLabel" text="planoLabel" />
                      </children>
                   </VBox>
-                  <Label text=" Aplicação:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label text=" Aplicação:" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Italic" size="15.0" />
                      </font>
@@ -66,19 +67,19 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <VBox alignment="TOP_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <VBox alignment="TOP_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <children>
                         <Label text="Data do Investimento: " />
                         <Label text="Valor Investido: " />
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <VBox alignment="TOP_CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <children>
                         <Label fx:id="dataDoInvestimentoLabel" text="dataDoInvestimentoLabel" />
                         <Label fx:id="valorInvestidoLabel" text="valorInvestidoLabel" />
                      </children>
                   </VBox>
-                  <Label layoutX="40.0" layoutY="175.0" text=" Rentabilidade" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Label layoutX="40.0" layoutY="175.0" text=" Rentabilidade" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="System Italic" size="15.0" />
                      </font>
@@ -86,13 +87,13 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <VBox alignment="TOP_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <VBox alignment="TOP_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <Label text="Valor Atual: " />
                         <Label text="Variação:" />
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                  <VBox alignment="TOP_CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
                      <children>
                         <Label fx:id="valorAtualLabel" alignment="CENTER" contentDisplay="CENTER" text="valorAtualLabel" />
                         <Label fx:id="variacaoLabel" text="variacaoLabel" />

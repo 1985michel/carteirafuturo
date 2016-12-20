@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class ApresentacaoLabelsController {
 
 	MainApp mainApp;
-	
+
 	public InvestimentoFX i;
 
 	@FXML
@@ -34,6 +34,9 @@ public class ApresentacaoLabelsController {
 	private Label rentabilidadeEsperadaLabel;
 
 	@FXML
+	private Label planoLabel;
+
+	@FXML
 	private Label dataDoInvestimentoLabel;
 
 	@FXML
@@ -41,20 +44,19 @@ public class ApresentacaoLabelsController {
 
 	@FXML
 	private Label descricaoLabel;
-	
-    @FXML
-    private Label valorAtualLabel;
 
-    @FXML
-    private Label variacaoLabel;
-	
-    @FXML
-    private Button atualizarCotacaoButton;
+	@FXML
+	private Label valorAtualLabel;
+
+	@FXML
+	private Label variacaoLabel;
+
+	@FXML
+	private Button atualizarCotacaoButton;
 
 	// Palco desse dialog
 	private Stage dialogStage;
 
-	
 	public void setMainApp(MainApp main) {
 		this.mainApp = main;
 	}
@@ -67,41 +69,41 @@ public class ApresentacaoLabelsController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
-	
-	public void setInvestimento(InvestimentoFX i){
+
+	public void setInvestimento(InvestimentoFX i) {
 		this.i = i;
 	}
-	
+
 	/**
 	 * Initialize - é chamado ao carregar o fxml
 	 */
 	@FXML
-	private void initialize() {}
-	
-	
-	@FXML
-	public void atualizarCotacao(){
-		this.mainApp.showAtualizaCotacaoOverview(i,this);
+	private void initialize() {
 	}
-	
-	
-	public void povoarDados(){
+
+	@FXML
+	public void atualizarCotacao() {
+		this.mainApp.showAtualizaCotacaoOverview(i, this);
+	}
+
+	public void povoarDados() {
 		DadosAdministrativos dA = i.getDadosAdministrativos();
 		this.descricaoLabel.setText(dA.getDescricao());
 		this.tipoLabel.setText(dA.getTipo().getNome());
 		this.investidorLabel.setText(dA.getInvestidor().getNome());
 		this.corretoraLabel.setText(dA.getCorretora().getNome());
 		this.custosOperacionaisLabel.setText("R$ 0,00");
-		this.rentabilidadeEsperadaLabel.setText(MascaraFinanceira.show(dA.getRentabilidadeEsperada())+" %");
-		
+		this.rentabilidadeEsperadaLabel.setText(MascaraFinanceira.show(dA.getRentabilidadeEsperada()) + " %");
+		this.planoLabel.setText(i.getDadosAdministrativos().getPlano());
+
 		Aplicacao aI = i.getAplicacaoInicial();
 		this.dataDoInvestimentoLabel.setText(EstruturaData.estruturaData(aI.getDataInvestimento()));
-		this.valorInvestidoLabel.setText("R$ "+MascaraFinanceira.show(aI.getValorInvestido()));
-		
-		//Historico de rentabilidade
-		this.valorAtualLabel.setText("R$ "+MascaraFinanceira.show(String.valueOf(i.getValorAtual())));
+		this.valorInvestidoLabel.setText("R$ " + MascaraFinanceira.show(aI.getValorInvestido()));
+
+		// Historico de rentabilidade
+		this.valorAtualLabel.setText("R$ " + MascaraFinanceira.show(String.valueOf(i.getValorAtual())));
 		this.variacaoLabel.setText(i.getLucratividade());
-		
+
 	}
 
 }

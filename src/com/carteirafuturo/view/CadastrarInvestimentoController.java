@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.carteirafuturo.MainApp;
+import com.carteirafuturo.crud.InvestimentoFXDAO;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.DadosAdministrativos;
@@ -135,8 +136,9 @@ public class CadastrarInvestimentoController {
 		Aplicacao aplicacaoInicial = new Aplicacao(data,new Double(valor));
 		
 		InvestimentoFX investimento = new InvestimentoFX(aplicacaoInicial, dadosAdministrativos);
-		
+		InvestimentoFXDAO.investir(investimento);
 		this.mainApp.aGrandeListaDeInvestimentos.add(investimento);
+		
 
 		okClicked = true;
 

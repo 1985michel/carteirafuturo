@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import com.carteirafuturo.crud.CorretoraDAO;
 import com.carteirafuturo.crud.InvestidorDAO;
+import com.carteirafuturo.crud.InvestimentoFXDAO;
+import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.DadosAdministrativos;
@@ -49,6 +51,7 @@ public class MainApp extends Application {
 		
 		carregaListas();
 		
+		/*
 		Aplicacao aplicacao = new Aplicacao("2016-12-15", 50000.00);
 		
 		//Dados Administrativos
@@ -76,7 +79,7 @@ public class MainApp extends Application {
 		for (Investidor i : aGrandeListaDeInvestidores) {
 			System.out.println(i);
 		}
-
+		*/
 		initRootLayout();
 
 	}
@@ -407,6 +410,8 @@ public class MainApp extends Application {
 	public void carregaListas(){
 		this.aGrandeListaDeInvestidores.addAll(InvestidorDAO.getTodosInvestidores());
 		this.aGrandeListaDeCorretoras.addAll(CorretoraDAO.getTodosCorretoraes());
+		this.aGrandeListaDeTiposDeInvestimento.addAll(TipoDeInvestimentoDAO.getTodosTipoDeInvestimentoes());
+		this.aGrandeListaDeInvestimentos.addAll(InvestimentoFXDAO.getTodosInvestimentos(this));
 	}
 
 

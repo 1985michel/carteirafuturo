@@ -35,13 +35,14 @@ public class InvestimentoFXDAO {
 
 			CRUD crud = new CRUD();
 			resultSet = crud.getResultSet(
-					"INSERT INTO INVESTIMENTO (descricao,valor,data,idtipoinvestimento,idInvestidor,idcorretora,rentabilidadeEsperada) VALUES ('"
+					"INSERT INTO INVESTIMENTO (descricao,valor,data,idTipo,idInvestidor,idcorretora,rentabilidadeEsperada,plano) VALUES ('"
 							+ i.getDadosAdministrativos().getDescricao() + "','" + i.getAplicacaoInicial().getValorInvestido() + "','" 
 							+ i.getAplicacaoInicial().getDataInvestimento() + "','"
 							+ i.getDadosAdministrativos().getTipo().getId() 
 							+ "','" + i.getDadosAdministrativos().getInvestidor().getId()
 							+ "','" + i.getDadosAdministrativos().getCorretora().getId()
 							+ "','" + i.getDadosAdministrativos().getRentabilidadeEsperada()
+							+ "','" + i.getDadosAdministrativos().getPlano()
 							+ "');CALL IDENTITY();");
 
 			if (resultSet.next()) {
