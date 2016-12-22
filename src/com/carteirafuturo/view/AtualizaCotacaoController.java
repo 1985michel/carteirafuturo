@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import com.carteirafuturo.MainApp;
+import com.carteirafuturo.crud.HistoricoDeRentabilidadeDAO;
 import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TextFieldMoney;
@@ -79,11 +80,12 @@ public class AtualizaCotacaoController {
 
 		okClicked = true;
 
+		HistoricoDeRentabilidade histRent = new HistoricoDeRentabilidade(i.getId(),data, new Double(valor));
 		// Criando a variação
-		i.addListHistoricoDeRentabilidade(new HistoricoDeRentabilidade(i.getId(),data, new Double(valor)));
+		i.addListHistoricoDeRentabilidade(histRent);
 
 		// Colocando a variação no db
-		
+		HistoricoDeRentabilidadeDAO.gravar(histRent);
 		
 		dialogStage.close();
 		
@@ -92,7 +94,7 @@ public class AtualizaCotacaoController {
 
 		//Atualizar tabela da tela inicial
 		this.mainApp.telaInicialController.initialize();
-
+		
 	}
 
 	/**

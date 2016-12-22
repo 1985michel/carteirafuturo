@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import com.carteirafuturo.crud.CRUD;
 import com.carteirafuturo.crud.CorretoraDAO;
 import com.carteirafuturo.crud.DBFactory;
+import com.carteirafuturo.crud.HistoricoDeRentabilidadeDAO;
 import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.Corretora;
+import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.TipoDeInvestimento;
 
 public class TestesCrud {
@@ -33,7 +35,7 @@ public class TestesCrud {
 			System.out.println(co.getId()+" - "+co.getNome());
 		}
 		
-		*/
+		
 		
 	
 		
@@ -47,6 +49,10 @@ public class TestesCrud {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
+		
+		HistoricoDeRentabilidade hist = new HistoricoDeRentabilidade("2", "2016-12-21", 300);
+		HistoricoDeRentabilidadeDAO.gravar(hist);
 		
 	}
 

@@ -22,6 +22,7 @@ public class HistoricoDeRentabilidade {
 
 	public HistoricoDeRentabilidade(String idInvestimento, String data, double valor) {
 
+		this.id = new SimpleStringProperty("");
 		this.idInvestimento = new SimpleStringProperty(idInvestimento);
 		this.data = new SimpleStringProperty(data);
 		this.valor = new SimpleDoubleProperty(valor);

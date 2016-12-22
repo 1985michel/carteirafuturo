@@ -2,8 +2,12 @@ package com.carteirafuturo.util;
 
 import com.carteirafuturo.MainApp;
 import com.carteirafuturo.model.Corretora;
+import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.TipoDeInvestimento;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class MainListsAdmin {
 	
@@ -35,6 +39,25 @@ public class MainListsAdmin {
 				return c;
 		}
 		return null;		
+	}
+	
+	public HistoricoDeRentabilidade getHistoricoDeRentabilidadeByInvestimentoFXId(String id){
+		for (HistoricoDeRentabilidade h : main.aGrandeListaDeHistoricoDeRentabilidade) {
+			if(h.getIdInvestimento().equalsIgnoreCase(id))
+				return h;
+		}
+		return null;		
+	}
+	
+	public ObservableList<HistoricoDeRentabilidade> getTodosHistoricosDeRentabilidadePorInvestimentoFXId(String id){
+		
+		ObservableList<HistoricoDeRentabilidade> list = FXCollections.observableArrayList();
+		
+		for (HistoricoDeRentabilidade h : main.aGrandeListaDeHistoricoDeRentabilidade) {
+			if(h.getIdInvestimento().equalsIgnoreCase(id))
+				list.add(h);
+		}
+		return list;
 	}
 
 }

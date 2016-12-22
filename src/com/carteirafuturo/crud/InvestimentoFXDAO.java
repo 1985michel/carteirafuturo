@@ -7,6 +7,7 @@ import com.carteirafuturo.MainApp;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.DadosAdministrativos;
+import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
@@ -82,6 +83,7 @@ public class InvestimentoFXDAO {
 				TipoDeInvestimento tipo = listsAdmin.getTipoDeInvestimentoById(resultSet.getString("idTipo"));
 				Corretora corretora = listsAdmin.getCorretoraById(resultSet.getString("idCorretora"));
 				Investidor investidor = listsAdmin.getInvestidorById(resultSet.getString("idInvestidor"));
+				
 				String descricao = resultSet.getString("descricao");
 				double valor = new Double(resultSet.getString("valor"));
 				double rentabilidadeEsperada = new Double(resultSet.getString("rentabilidadeEsperada"));
@@ -91,7 +93,7 @@ public class InvestimentoFXDAO {
 				DadosAdministrativos dA = new DadosAdministrativos(tipo, descricao, rentabilidadeEsperada, plano, investidor, corretora);
 				Aplicacao aI = new Aplicacao(data, valor);
 				
-				lista.add(new InvestimentoFX(idt,aI,dA));
+				lista.add(new InvestimentoFX(idt,aI,dA,listsAdmin.getTodosHistoricosDeRentabilidadePorInvestimentoFXId(idt)));
 			}
 
 		} catch (Exception e) {

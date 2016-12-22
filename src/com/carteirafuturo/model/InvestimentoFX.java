@@ -44,14 +44,26 @@ public class InvestimentoFX {
 	public InvestimentoFX(Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos) {
 		this.aplicacaoInicial = aplicacaoInicial;
 		this.dadosAdministrativos = dadosAdministrativos;
-		this.listHistoricoDeRentabilidade = FXCollections.observableArrayList();
+		// this.listHistoricoDeRentabilidade =
+		// FXCollections.observableArrayList();
 		this.setValorAtual(this.aplicacaoInicial.getValorInvestido());
-		
+
 	}
 
 	public InvestimentoFX(String id, Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos) {
 		this(aplicacaoInicial, dadosAdministrativos);
 		this.id = new SimpleStringProperty(id);
+
+	}
+
+	public InvestimentoFX(String id, Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos,
+			ObservableList<HistoricoDeRentabilidade> listHistoricoDeRentabilidade) {
+		this(aplicacaoInicial, dadosAdministrativos);
+		this.id = new SimpleStringProperty(id);
+		this.listHistoricoDeRentabilidade = listHistoricoDeRentabilidade;
+		// Setando como valor atual o cultimo valor da lista ( o mais recente)
+		if (!listHistoricoDeRentabilidade.isEmpty())
+			this.setValorAtual(listHistoricoDeRentabilidade.get(listHistoricoDeRentabilidade.size() - 1).getValor());
 	}
 
 	public DadosAdministrativos getDadosAdministrativos() {
@@ -74,14 +86,19 @@ public class InvestimentoFX {
 		return this.listHistoricoDeRentabilidade;
 	}
 
-	public void setListHistoricoDeRentabilidade(List<HistoricoDeRentabilidade> listHistoricoDeRentabilidade) {
+	public void setListHistoricoDeRentabilidade(ObservableList<HistoricoDeRentabilidade> listHistoricoDeRentabilidade) {
 		this.listHistoricoDeRentabilidade.clear();
 		this.listHistoricoDeRentabilidade.addAll(listHistoricoDeRentabilidade);
+
+		// Setando como valor atual o cultimo valor da lista ( o mais recente)
+		if (!listHistoricoDeRentabilidade.isEmpty())
+			this.setValorAtual(listHistoricoDeRentabilidade.get(listHistoricoDeRentabilidade.size() - 1).getValor());
 	}
 
 	/**
-	 * Ao adicionar uma nova cotação o valor atual e a lucratividade são automaticamente atualizados
-	 * */
+	 * Ao adicionar uma nova cotação o valor atual e a lucratividade são
+	 * automaticamente atualizados
+	 */
 	public void addListHistoricoDeRentabilidade(HistoricoDeRentabilidade hist) {
 		this.listHistoricoDeRentabilidade.add(hist);
 		this.setValorAtual(hist.valorProperty().get());
@@ -137,15 +154,16 @@ public class InvestimentoFX {
 
 	public final void setValorAtual(final double valorAtual) {
 		this.valorAtual = new SimpleDoubleProperty(valorAtual);
-		this.lucratividade = CalcularVariacao.calcProperty(this.getAplicacaoInicial().getValorInvestido(), this.getValorAtual());
+		this.lucratividade = CalcularVariacao.calcProperty(this.getAplicacaoInicial().getValorInvestido(),
+				this.getValorAtual());
 	}
 
 	public final StringProperty lucratividadeProperty() {
 		return this.lucratividade;
 	}
-	
+
 	public final StringProperty lucratividadePercentualProperty() {
-		return new SimpleStringProperty(this.lucratividade.get()+" %");
+		return new SimpleStringProperty(this.lucratividade.get() + " %");
 	}
 
 	public final java.lang.String getLucratividade() {

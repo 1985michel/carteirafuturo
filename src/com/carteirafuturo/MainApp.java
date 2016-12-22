@@ -3,6 +3,7 @@ package com.carteirafuturo;
 import java.io.IOException;
 
 import com.carteirafuturo.crud.CorretoraDAO;
+import com.carteirafuturo.crud.HistoricoDeRentabilidadeDAO;
 import com.carteirafuturo.crud.InvestidorDAO;
 import com.carteirafuturo.crud.InvestimentoFXDAO;
 import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
@@ -40,6 +41,7 @@ public class MainApp extends Application {
 	public ObservableList<TipoDeInvestimento> aGrandeListaDeTiposDeInvestimento = FXCollections.observableArrayList();
 	public ObservableList<Investidor> aGrandeListaDeInvestidores = FXCollections.observableArrayList();
 	public ObservableList<Corretora> aGrandeListaDeCorretoras = FXCollections.observableArrayList();
+	public ObservableList<HistoricoDeRentabilidade> aGrandeListaDeHistoricoDeRentabilidade =  FXCollections.observableArrayList();
 
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
@@ -50,6 +52,8 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Carteira Futuro");
+		
+		
 		
 		carregaListas();
 		
@@ -412,6 +416,7 @@ public class MainApp extends Application {
 	
 	public void carregaListas(){
 		this.aGrandeListaDeInvestidores.addAll(InvestidorDAO.getTodosInvestidores());
+		this.aGrandeListaDeHistoricoDeRentabilidade.addAll(HistoricoDeRentabilidadeDAO.getTodosHistoricosDeRentabilidade(this));
 		this.aGrandeListaDeCorretoras.addAll(CorretoraDAO.getTodosCorretoraes());
 		this.aGrandeListaDeTiposDeInvestimento.addAll(TipoDeInvestimentoDAO.getTodosTipoDeInvestimentoes());
 		this.aGrandeListaDeInvestimentos.addAll(InvestimentoFXDAO.getTodosInvestimentos(this));
