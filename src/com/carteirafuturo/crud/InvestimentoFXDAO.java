@@ -91,7 +91,7 @@ public class InvestimentoFXDAO {
 				DadosAdministrativos dA = new DadosAdministrativos(tipo, descricao, rentabilidadeEsperada, plano, investidor, corretora);
 				Aplicacao aI = new Aplicacao(data, valor);
 				
-				lista.add(new InvestimentoFX(aI,dA));
+				lista.add(new InvestimentoFX(idt,aI,dA));
 			}
 
 		} catch (Exception e) {

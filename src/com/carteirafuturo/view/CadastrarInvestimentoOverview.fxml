@@ -26,21 +26,21 @@
                <children>
                   <Label layoutY="4.0" text="Tipo:" />
                   <ComboBox fx:id="tipoComboBox" layoutX="61.0" prefHeight="25.0" prefWidth="248.0" />
-                  <Button layoutX="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="54.0" text="Novo" />
+                  <Button layoutX="321.0" mnemonicParsing="false" onAction="#showCadastrarTipoDeInvestimento" prefHeight="25.0" prefWidth="54.0" text="Novo" />
                </children>
             </Group>
             <Group>
                <children>
                   <Label layoutY="4.0" text="Investidor: " />
                   <ComboBox fx:id="investidorComboBox" layoutX="61.0" prefHeight="25.0" prefWidth="248.0" />
-                  <Button layoutX="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="54.0" text="Novo" />
+                  <Button layoutX="322.0" mnemonicParsing="false" onAction="#showCadastrarInvestidor" prefHeight="25.0" prefWidth="54.0" text="Novo" />
                </children>
             </Group>
             <Group>
                <children>
                   <Label layoutY="4.0" text="Corretora: " />
                   <ComboBox fx:id="corretoraComboBox" layoutX="61.0" prefHeight="25.0" prefWidth="248.0" />
-                  <Button layoutX="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="54.0" text="Novo" />
+                  <Button layoutX="322.0" mnemonicParsing="false" onAction="#showCadastrarCorretora" prefHeight="25.0" prefWidth="54.0" text="Novo" />
                </children>
             </Group>
             <Group>

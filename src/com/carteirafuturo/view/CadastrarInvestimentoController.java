@@ -88,6 +88,8 @@ public class CadastrarInvestimentoController {
 		corretoraComboBox.setOnAction((event) -> {
 			corretoraSelecionada = corretoraComboBox.getValue();
 		});
+		
+		
 
 	}
 
@@ -159,6 +161,21 @@ public class CadastrarInvestimentoController {
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
+	}
+	
+	@FXML
+	public void showCadastrarInvestidor(){
+		this.mainApp.showCadastrarInvestidor();
+	}
+	
+	@FXML
+	public void showCadastrarCorretora(){
+		this.mainApp.showCadastrarCorretora();
+	}
+	
+	@FXML
+	public void showCadastrarTipoDeInvestimento(){
+		this.mainApp.showCadastrarTipoDeInvestimento();
 	}
 
 }

@@ -79,9 +79,10 @@ public class CadastrarCorretoraController {
 		CorretoraDAO.registrarCorretora(corretora);
 		this.mainApp.aGrandeListaDeCorretoras.add(corretora);
 
-		// Colocando a variação no db
-
+		
 		dialogStage.close();
+		
+		
 
 	}
 

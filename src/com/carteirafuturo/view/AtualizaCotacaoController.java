@@ -86,7 +86,12 @@ public class AtualizaCotacaoController {
 		
 		
 		dialogStage.close();
+		
+		//Povoar dados na tela de Apresentação por Labels
 		apLabelCtrl.povoarDados();
+
+		//Atualizar tabela da tela inicial
+		this.mainApp.telaInicialController.initialize();
 
 	}
 

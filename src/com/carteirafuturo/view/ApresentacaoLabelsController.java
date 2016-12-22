@@ -52,6 +52,9 @@ public class ApresentacaoLabelsController {
 	private Label variacaoLabel;
 
 	@FXML
+	private Label idLabel;
+
+	@FXML
 	private Button atualizarCotacaoButton;
 
 	// Palco desse dialog
@@ -88,6 +91,7 @@ public class ApresentacaoLabelsController {
 
 	public void povoarDados() {
 		DadosAdministrativos dA = i.getDadosAdministrativos();
+		this.idLabel.setText(i.getId());
 		this.descricaoLabel.setText(dA.getDescricao());
 		this.tipoLabel.setText(dA.getTipo().getNome());
 		this.investidorLabel.setText(dA.getInvestidor().getNome());

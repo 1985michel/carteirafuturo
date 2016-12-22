@@ -45,7 +45,7 @@ public class TelaInicialController {
 	 * Inicializa a classe controller. Método chamado ao carregar o fxml
 	 */
 	@FXML
-	private void initialize() {
+	public void initialize() {
 		dataAplicacaoTableColumn.setCellValueFactory(cellData -> EstruturaData
 				.estruturaData(cellData.getValue().getAplicacaoInicial().dataInvestimentoProperty()));
 		valorInvestidoTableColumn.setCellValueFactory(cellData -> MascaraFinanceira
