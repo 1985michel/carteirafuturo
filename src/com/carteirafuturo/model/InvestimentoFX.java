@@ -44,22 +44,28 @@ public class InvestimentoFX {
 	public InvestimentoFX(Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos) {
 		this.aplicacaoInicial = aplicacaoInicial;
 		this.dadosAdministrativos = dadosAdministrativos;
-		// this.listHistoricoDeRentabilidade =
-		// FXCollections.observableArrayList();
 		this.setValorAtual(this.aplicacaoInicial.getValorInvestido());
+		this.listHistoricoDeRentabilidade = FXCollections.observableArrayList();
 
 	}
 
 	public InvestimentoFX(String id, Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos) {
-		this(aplicacaoInicial, dadosAdministrativos);
+		this.aplicacaoInicial = aplicacaoInicial;
+		this.dadosAdministrativos = dadosAdministrativos;
+		this.setValorAtual(this.aplicacaoInicial.getValorInvestido());
+		this.listHistoricoDeRentabilidade = FXCollections.observableArrayList();
 		this.id = new SimpleStringProperty(id);
+		
 
 	}
 
 	public InvestimentoFX(String id, Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos,
 			ObservableList<HistoricoDeRentabilidade> listHistoricoDeRentabilidade) {
-		this(aplicacaoInicial, dadosAdministrativos);
+		this.aplicacaoInicial = aplicacaoInicial;
+		this.dadosAdministrativos = dadosAdministrativos;
+		this.setValorAtual(this.aplicacaoInicial.getValorInvestido());
 		this.id = new SimpleStringProperty(id);
+		
 		this.listHistoricoDeRentabilidade = listHistoricoDeRentabilidade;
 		// Setando como valor atual o cultimo valor da lista ( o mais recente)
 		if (!listHistoricoDeRentabilidade.isEmpty())
