@@ -106,7 +106,7 @@ public class ApresentacaoLabelsController {
 
 		// Historico de rentabilidade
 		this.valorAtualLabel.setText("R$ " + MascaraFinanceira.show(String.valueOf(i.getValorAtual())));
-		this.variacaoLabel.setText(i.getLucratividade());
+		this.variacaoLabel.setText(i.getLucratividade()+"%");
 
 	}
 
