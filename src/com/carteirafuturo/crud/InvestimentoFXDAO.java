@@ -25,15 +25,7 @@ public class InvestimentoFXDAO {
 		// Gravando o cliente ao banco
 		ResultSet resultSet = null;
 		try {
-			
-			/**
-			 * String criarTabelaInvestimento = "CREATE TABLE INVESTIMENTO (" + "id INTEGER IDENTITY PRIMARY KEY, "
-				+ "descricao VARCHAR(200)," + "idInvestidor VARCHAR(10)," + "idCorretora VARCHAR(10)," 
-				+ "idTipo VARCHAR(10)," + "valor VARCHAR(50)," + "rentabilidadeEsperada VARCHAR(10)," + "custosOperacionais VARCHAR(10),"+ "data VARCHAR(200)," 
-				+ ");";
-			 * *
-			 */
-
+		
 			CRUD crud = new CRUD();
 			resultSet = crud.getResultSet(
 					"INSERT INTO INVESTIMENTO (descricao,valor,data,idTipo,idInvestidor,idcorretora,rentabilidadeEsperada,plano) VALUES ('"
@@ -51,6 +43,44 @@ public class InvestimentoFXDAO {
 				// IDENTITY();
 				i.setId(id + "");
 			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+	public static void atualizarInvestimento(InvestimentoFX i) {
+		
+		/*
+		 * 		String criarTabelaInvestimento = "CREATE TABLE INVESTIMENTO (" + "id INTEGER IDENTITY PRIMARY KEY, "
+			+ "descricao VARCHAR(500)," + "idInvestidor VARCHAR(10)," + "idCorretora VARCHAR(10)," 
+			+ "idTipo VARCHAR(10)," + "valor VARCHAR(50)," + "rentabilidadeEsperada VARCHAR(10)," + "custosOperacionais VARCHAR(10),"+
+			"data VARCHAR(10), plano VARCHAR(5000));";
+		 * 
+		 * 
+		 */
+
+		ResultSet resultSet = null;
+		try {
+			CRUD crud = new CRUD();
+
+			resultSet = crud.getResultSet("UPDATE INVESTIMENTO SET descricao= '" + i.getDadosAdministrativos().getDescricao() 
+					+ "', idInvestidor= '" + i.getDadosAdministrativos().getInvestidor().getId()
+					+ "', idCorretora= '" + i.getDadosAdministrativos().getCorretora().getId()
+					+ "', idTipo= '" + i.getDadosAdministrativos().getTipo().getId()
+					+ "', valor= '" + i.getAplicacaoInicial().getValorInvestido()
+					+ "', rentabilidadeEsperada= '" + i.getDadosAdministrativos().getRentabilidadeEsperada()
+					+ "', custosOperacionais= '" + i.getDadosAdministrativos().getCustosOperacionais()
+					+ "', data= '" + i.getAplicacaoInicial().getDataInvestimento()
+					+ "', plano= '" + i.getDadosAdministrativos().getPlano()
+					+ "' WHERE id='" + i.getId() + "'");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,29 +206,10 @@ public class InvestimentoFXDAO {
 
 	}
 
-	public static void atualizarInvestimento(Investimento i) {
+	*/
 
-		ResultSet resultSet = null;
-		try {
-			CRUD crud = new CRUD();
 
-			resultSet = crud.getResultSet("UPDATE INVESTIMENTO SET nome= '" + i.getNome() + "', valor= '" + i.getValor()
-					+ "', data= '" + i.getData() + "', plano= '" + i.getPlano() + "', idtipoinvestimento= '"
-					+ i.getTipoInvestimento().getId() + "', idinvestidor= '" + i.getInvestidor().getId()
-					+ "' WHERE id='" + i.getId() + "'");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				resultSet.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
-
+	/*
 	public static void deletarInvestimento(Investimento i) {
 
 		ResultSet resultSet = null;

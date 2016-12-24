@@ -2,13 +2,19 @@ package testes;
 
 import java.sql.SQLException;
 
+import com.carteirafuturo.MainApp;
 import com.carteirafuturo.crud.CRUD;
 import com.carteirafuturo.crud.CorretoraDAO;
 import com.carteirafuturo.crud.DBFactory;
 import com.carteirafuturo.crud.HistoricoDeRentabilidadeDAO;
+import com.carteirafuturo.crud.InvestimentoFXDAO;
 import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
+import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
+import com.carteirafuturo.model.DadosAdministrativos;
 import com.carteirafuturo.model.HistoricoDeRentabilidade;
+import com.carteirafuturo.model.Investidor;
+import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
 
 public class TestesCrud {
@@ -51,8 +57,23 @@ public class TestesCrud {
 		}
 		*/
 		
-		HistoricoDeRentabilidade hist = new HistoricoDeRentabilidade("2", "2016-12-21", 300);
-		HistoricoDeRentabilidadeDAO.gravar(hist);
+
+		InvestimentoFX i = null;
+		MainApp main = new MainApp();
+		for (InvestimentoFX j : InvestimentoFXDAO.getTodosInvestimentos(main)) {
+			if(j.getId().equalsIgnoreCase("4"))
+				i = j;
+		}
+		
+		System.out.println(i.getId());
+		Aplicacao api = new Aplicacao("2016-12-26", 99);
+		i.setAplicacaoInicial(api);
+		DadosAdministrativos adm = new DadosAdministrativos(new TipoDeInvestimento("0", "TD"), "9desc", 0.99, "9plano", new Investidor("0", "m"),
+				new Corretora("0", "f"));
+		i.setDadosAdministrativos(adm);
+		InvestimentoFXDAO.atualizarInvestimento(i);
+				
+				
 		
 	}
 

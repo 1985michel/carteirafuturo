@@ -16,6 +16,7 @@ import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.view.ApresentacaoLabelsController;
 import com.carteirafuturo.view.AtualizaCotacaoController;
+import com.carteirafuturo.view.AtualizarInvestimentoController;
 import com.carteirafuturo.view.CadastrarCorretoraController;
 import com.carteirafuturo.view.CadastrarInvestidorController;
 import com.carteirafuturo.view.CadastrarInvestimentoController;
@@ -391,6 +392,47 @@ public class MainApp extends Application {
 			// Criando o dialogStage
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Cadastrar Investimento");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showAtualizarInvestimento(InvestimentoFX i) {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/AtualizarInvestimentoOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			AtualizarInvestimentoController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.povoarComboBoxs();
+			controller.povoarFormulario(i);
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Atualizar Investimento");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(true);

@@ -93,7 +93,7 @@ public class AtualizaCotacaoController {
 		apLabelCtrl.povoarDados();
 
 		//Atualizar tabela da tela inicial
-		this.mainApp.telaInicialController.initialize();
+		this.mainApp.telaInicialController.atualizarExibicaoDados();
 		
 	}
 

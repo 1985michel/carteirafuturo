@@ -28,34 +28,34 @@ public class CadastrarInvestimentoController {
 	Corretora corretoraSelecionada;
 
 	// Palco desse dialog
-	private Stage dialogStage;
+	protected Stage dialogStage;
 
 	// Variável que monitora o retorno do dialog
-	private boolean okClicked = false;
+	protected boolean okClicked = false;
 
 	@FXML
-	private TextField descricaoTextField;
+	protected TextField descricaoTextField;
 
 	@FXML
-	private TextField valorInvestidorMoneyTextField;
+	protected TextField valorInvestidorMoneyTextField;
 
 	@FXML
-	private ComboBox<TipoDeInvestimento> tipoComboBox;
+	protected ComboBox<TipoDeInvestimento> tipoComboBox;
 
 	@FXML
-	private ComboBox<Investidor> investidorComboBox;
+	protected ComboBox<Investidor> investidorComboBox;
 
 	@FXML
-	private ComboBox<Corretora> corretoraComboBox;
+	protected ComboBox<Corretora> corretoraComboBox;
 
 	@FXML
-	private DatePicker dataDaAplicacaoDatePicker;
+	protected DatePicker dataDaAplicacaoDatePicker;
 
 	@FXML
-	private TextField rentabilidadeEsperadaTextField;
+	protected TextField rentabilidadeEsperadaTextField;
 	
 	@FXML
-    private TextArea planoTextArea;
+	protected TextArea planoTextArea;
 
 	/**
 	 * Ligando ao main
@@ -68,7 +68,7 @@ public class CadastrarInvestimentoController {
 	 * Inicializa a classe controller. Método chamado ao carregar o fxml
 	 */
 	@FXML
-	private void initialize() {
+	protected void initialize() {
 
 		// Povoando ComboBox
 		
@@ -125,7 +125,7 @@ public class CadastrarInvestimentoController {
 	 * Chamado quando o usuário clica ok
 	 */
 	@FXML
-	private void handleOk() {
+	protected void handleOk() {
 		String descricao = descricaoTextField.getText();
 		String rentabilidadeEsperada = rentabilidadeEsperadaTextField.getText();
 		String data = dataDaAplicacaoDatePicker.getValue().toString();
@@ -159,7 +159,7 @@ public class CadastrarInvestimentoController {
 	 * Chamado quando o usuário clica Cancel.
 	 */
 	@FXML
-	private void handleCancel() {
+	protected void handleCancel() {
 		dialogStage.close();
 	}
 	

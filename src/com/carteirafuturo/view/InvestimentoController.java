@@ -47,6 +47,16 @@ public class InvestimentoController {
 		this.mainApp.showApresentacaoLabels(this.areaDeTrabalho, this.investimento);
 	}
 	
+	@FXML
+	public void showAtualizarInvestimento(){
+		
+		this.mainApp.showAtualizarInvestimento(investimento);
+		this.showApresentacaoLabels();
+		
+		//Fechando o dialog atual. Ele será reaberto automaticamente ao fim da edição
+		
+	}
+	
 	
     
     

@@ -46,6 +46,7 @@ public class InvestimentoFX {
 		this.dadosAdministrativos = dadosAdministrativos;
 		this.setValorAtual(this.aplicacaoInicial.getValorInvestido());
 		this.listHistoricoDeRentabilidade = FXCollections.observableArrayList();
+		this.id = new SimpleStringProperty("");
 
 	}
 
