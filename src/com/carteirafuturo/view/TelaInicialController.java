@@ -6,20 +6,30 @@ import com.carteirafuturo.util.EstruturaData;
 import com.carteirafuturo.util.MainListsAdmin;
 import com.carteirafuturo.util.MascaraFinanceira;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.SplitPane.Divider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+
 
 public class TelaInicialController {
 
 	MainApp mainApp;
 
 	MainListsAdmin mainList;
+	
+	boolean isMenuOpen = true;
 
+	@FXML
+	private SplitPane baseSplitPane;
 	@FXML
 	private AnchorPane menuLateralAnchorPane;
 	@FXML
@@ -78,6 +88,7 @@ public class TelaInicialController {
 	 */
 	@FXML
 	public void initialize() {
+		
 		dataAplicacaoTableColumn.setCellValueFactory(cellData -> EstruturaData
 				.estruturaData(cellData.getValue().getAplicacaoInicial().dataInvestimentoProperty()));
 		valorInvestidoTableColumn.setCellValueFactory(cellData -> MascaraFinanceira
@@ -165,18 +176,39 @@ public class TelaInicialController {
 		this.initialize();
 		this.showResumo();
 	}
+
 	
-	@FXML
-	private void rideMenuLateral(){
-		this.menuLateralAnchorPane.setMaxWidth(5);
-		this.menuLateralAnchorPane.setMinWidth(5);
+	private void hideMenuLateral() {
+		//this.menuLateralAnchorPane.setMaxWidth(0);
+		//this.menuLateralAnchorPane.setMinWidth(0);
 		
+		DoubleProperty dDrop = this.baseSplitPane.getDividers().get(0).positionProperty();
+		DoubleTransition dt = new DoubleTransition(Duration.millis(800),dDrop);
+		dt.setToValue(.0);
+		dt.play();
+		isMenuOpen = false;
+
+	}
+
+	
+	private void showMenuLateral() {
+	//	this.menuLateralAnchorPane.setMaxWidth(150);
+	//	this.menuLateralAnchorPane.setMinWidth(150);
+		
+		DoubleProperty dDrop = this.baseSplitPane.getDividers().get(0).positionProperty();
+		DoubleTransition dt = new DoubleTransition(Duration.millis(800),dDrop);
+		dt.setToValue(.2);
+		dt.play();
+		isMenuOpen = true;
 	}
 	
 	@FXML
-	private void showMenuLateral(){
-		this.menuLateralAnchorPane.setMaxWidth(200);
-		this.menuLateralAnchorPane.setMinWidth(200);
+	public void animaMenu(){
+		if(isMenuOpen) hideMenuLateral();
+		else showMenuLateral();
+			
 	}
+	
+	
 
 }
