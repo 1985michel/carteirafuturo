@@ -79,7 +79,7 @@ public class MetasController {
 				if (m == null) {
 					setTooltip(null);
 				} else {
-					tooltip.setText(m.getDescricao());
+					tooltip.setText(m.getDescricao()+"Valor Atual: R$"+MascaraFinanceira.show(mainList.getValorAtualTotal()));
 					setTooltip(tooltip);
 				}
 			}
@@ -91,7 +91,9 @@ public class MetasController {
 	}
 
 	private StringProperty statusDaMeta(DoubleProperty meta) {
+				
 		return new SimpleStringProperty(CalcularVariacao.calcFaltaParaMeta(mainList.getValorAtualTotal(), meta.get())+" %");
+		
 	}
 	
 

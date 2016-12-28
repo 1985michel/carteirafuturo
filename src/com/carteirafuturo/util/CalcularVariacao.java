@@ -13,10 +13,9 @@ public class CalcularVariacao {
 
 	}
 	
-	public static String calcFaltaParaMeta(double valorInicial, double valorFinal) {
+	public static String calcFaltaParaMeta(double valorAtual, double meta) {
 
-		double variacao = ((100 * valorFinal) / valorInicial) - 100;
-		variacao = 100 - variacao;
+		double variacao = ((100 * valorAtual) / meta);		
 
 		// NÃO É DINEHRIO É PORCENTAGEM
 		return String.format("%.2f", variacao);
