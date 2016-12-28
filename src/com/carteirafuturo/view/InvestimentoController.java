@@ -57,6 +57,12 @@ public class InvestimentoController {
 		
 	}
 	
+	@FXML
+	public void ShowDeletarInvestimento(){
+		this.mainApp.showDeletarInvestimento(investimento);
+		this.dialogStage.close();
+	}
+	
 	
     
     

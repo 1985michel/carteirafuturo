@@ -209,8 +209,8 @@ public class InvestimentoFXDAO {
 	*/
 
 
-	/*
-	public static void deletarInvestimento(Investimento i) {
+	
+	public static void deletarInvestimento(InvestimentoFX i) {
 
 		ResultSet resultSet = null;
 		try {
@@ -226,6 +226,6 @@ public class InvestimentoFXDAO {
 			}
 		}
 	}
-	*/
+	
 
 }

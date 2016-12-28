@@ -105,7 +105,7 @@ public class TelaInicialController {
 		// Detecta o duplo click do mouse e apresenta detalhamento
 		investimentosTableView.setOnMousePressed((event) -> {
 			if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-				this.mainApp.showInvestimentoOverview(investimentosTableView.getSelectionModel().getSelectedItem());
+				this.mainApp.showInvestimentoOverview(investimentosTableView.getSelectionModel().getSelectedItem(),this);
 			}
 		});
 		// Colocando tooltip
@@ -148,7 +148,7 @@ public class TelaInicialController {
 
 	@FXML
 	private void showCadastrarInvestimento() {
-		this.mainApp.showCadastrarInvestimento();
+		this.mainApp.showCadastrarInvestimento(this);
 	}
 
 	@FXML

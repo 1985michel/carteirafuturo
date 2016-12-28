@@ -25,6 +25,7 @@ import com.carteirafuturo.view.CadastrarInvestidorController;
 import com.carteirafuturo.view.CadastrarInvestimentoController;
 import com.carteirafuturo.view.CadastrarMetaController;
 import com.carteirafuturo.view.CadastrarTipoDeInvestimentoController;
+import com.carteirafuturo.view.DeletarInvestimentoController;
 import com.carteirafuturo.view.HistoricoDeRentabilidadeController;
 import com.carteirafuturo.view.InvestimentoController;
 import com.carteirafuturo.view.MetasController;
@@ -135,9 +136,10 @@ public class MainApp extends Application {
 	}
 	
 	
-	public void showInvestimentoOverview(InvestimentoFX i) {
+	public void showInvestimentoOverview(InvestimentoFX i, TelaInicialController telaInicialController) {
 		try {
 
+			
 			// Load o FXML
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/InvestimentoOverview.fxml"));
@@ -169,7 +171,7 @@ public class MainApp extends Application {
 			// Show
 			this.showApresentacaoLabels(controller.areaDeTrabalho, i);
 			dialogStage.showAndWait();
-			
+			telaInicialController.atualizarExibicaoDados();
 			
 
 		} catch (IOException e) {
@@ -461,7 +463,7 @@ public class MainApp extends Application {
 		}
 	}
 	
-	public void showCadastrarInvestimento() {
+	public void showCadastrarInvestimento(TelaInicialController telaInicialController) {
 		try {
 
 			// Load o FXML
@@ -493,6 +495,7 @@ public class MainApp extends Application {
 			// Show
 			
 			dialogStage.showAndWait();
+			telaInicialController.atualizarExibicaoDados();
 			
 			
 
@@ -519,6 +522,47 @@ public class MainApp extends Application {
 			// Criando o dialogStage
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Atualizar Investimento");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showDeletarInvestimento(InvestimentoFX i) {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/DeletarInvestimentoOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			DeletarInvestimentoController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.setInvestimento(i);
+			controller.povoarDados();
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Deletar Investimento");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(true);
