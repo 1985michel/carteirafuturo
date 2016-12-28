@@ -79,7 +79,7 @@ public class CadastrarMetaController {
 		String data = dataDatePicker.getValue().toString();
 		String descricao = descriacaoTextArea.getText();
 		String valor = valorMoneyTextField.getText();
-		boolean isAtingido = isMetaAtingidaCheckBox.isArmed();
+		boolean isAtingido = isMetaAtingidaCheckBox.isSelected();
 		
 		okClicked = true;
 

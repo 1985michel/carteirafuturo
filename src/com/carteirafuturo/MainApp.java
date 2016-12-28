@@ -26,6 +26,7 @@ import com.carteirafuturo.view.CadastrarMetaController;
 import com.carteirafuturo.view.CadastrarTipoDeInvestimentoController;
 import com.carteirafuturo.view.HistoricoDeRentabilidadeController;
 import com.carteirafuturo.view.InvestimentoController;
+import com.carteirafuturo.view.MetasController;
 import com.carteirafuturo.view.TelaInicialController;
 
 import javafx.application.Application;
@@ -395,6 +396,46 @@ public class MainApp extends Application {
 			// Criando o dialogStage
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Cadastrar Meta");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showMetas() {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/MetasOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			MetasController controller = loader.getController();
+			controller.setMainApp(this);
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Minhas Metas");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(true);
