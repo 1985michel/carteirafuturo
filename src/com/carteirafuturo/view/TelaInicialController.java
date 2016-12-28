@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
 
 public class TelaInicialController {
 
@@ -19,6 +20,8 @@ public class TelaInicialController {
 
 	MainListsAdmin mainList;
 
+	@FXML
+	private AnchorPane menuLateralAnchorPane;
 	@FXML
 	private TableView<InvestimentoFX> investimentosTableView;
 	@FXML
@@ -161,6 +164,19 @@ public class TelaInicialController {
 	public void atualizarExibicaoDados() {
 		this.initialize();
 		this.showResumo();
+	}
+	
+	@FXML
+	private void rideMenuLateral(){
+		this.menuLateralAnchorPane.setMaxWidth(5);
+		this.menuLateralAnchorPane.setMinWidth(5);
+		
+	}
+	
+	@FXML
+	private void showMenuLateral(){
+		this.menuLateralAnchorPane.setMaxWidth(200);
+		this.menuLateralAnchorPane.setMinWidth(200);
 	}
 
 }
