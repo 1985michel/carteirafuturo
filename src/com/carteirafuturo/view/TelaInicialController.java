@@ -89,6 +89,7 @@ public class TelaInicialController {
 	@FXML
 	public void initialize() {
 		
+		
 		dataAplicacaoTableColumn.setCellValueFactory(cellData -> EstruturaData
 				.estruturaData(cellData.getValue().getAplicacaoInicial().dataInvestimentoProperty()));
 		valorInvestidoTableColumn.setCellValueFactory(cellData -> MascaraFinanceira
