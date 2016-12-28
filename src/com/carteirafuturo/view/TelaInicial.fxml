@@ -28,15 +28,11 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <VBox layoutX="9.600000381469727" layoutY="9.600000381469727" prefHeight="322.0" prefWidth="150.0" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Button defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#showCadastrarInvestimento" prefHeight="39.0" prefWidth="131.0" text="Investimento" />
-                                          <Button mnemonicParsing="false" onAction="#showCadastrarTipoDeInvestimento" prefHeight="39.0" prefWidth="131.0" text="Tipo de Investimento" />
-                                          <Button mnemonicParsing="false" onAction="#showCadastrarInvestidor" prefHeight="39.0" prefWidth="131.0" text="Investidor" />
-                                          <Button layoutX="10.0" layoutY="51.0" mnemonicParsing="false" onAction="#showCadastrarCorretora" prefHeight="39.0" prefWidth="131.0" text="Corretora" />
-                                          <Button layoutX="10.0" layoutY="133.0" mnemonicParsing="false" onAction="#showCadastrarMeta" prefHeight="39.0" prefWidth="131.0" text="Meta" />
-                                       </children>
-                                    </VBox>
+                                    <Button defaultButton="true" layoutX="9.600000381469727" layoutY="9.600000381469727" mnemonicParsing="false" onAction="#showCadastrarInvestimento" prefHeight="39.0" prefWidth="131.0" text="Investimento" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <Button layoutX="9.600000381469727" layoutY="50.599998474121094" mnemonicParsing="false" onAction="#showCadastrarTipoDeInvestimento" prefHeight="39.0" prefWidth="131.0" text="Tipo de Investimento" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <Button layoutX="9.600000381469727" layoutY="91.5999984741211" mnemonicParsing="false" onAction="#showCadastrarInvestidor" prefHeight="39.0" prefWidth="131.0" text="Investidor" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <Button layoutX="9.600000381469727" layoutY="132.60000610351562" mnemonicParsing="false" onAction="#showCadastrarCorretora" prefHeight="39.0" prefWidth="131.0" text="Corretora" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <Button layoutX="9.600000381469727" layoutY="173.60000610351562" mnemonicParsing="false" onAction="#showCadastrarMeta" prefHeight="39.0" prefWidth="131.0" text="Meta" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children></AnchorPane>
                         </content>
                       </TitledPane>
