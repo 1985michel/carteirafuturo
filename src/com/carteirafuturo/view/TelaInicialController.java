@@ -5,6 +5,7 @@ import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.util.EstruturaData;
 import com.carteirafuturo.util.MainListsAdmin;
 import com.carteirafuturo.util.MascaraFinanceira;
+import com.carteirafuturo.util.OrdenaListDeInvestimentosPorData;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
@@ -80,6 +81,7 @@ public class TelaInicialController {
 	}
 
 	public void povoarTabela() {
+		OrdenaListDeInvestimentosPorData.ordenaInvestimentosPorData(this.mainApp.aGrandeListaDeInvestimentos);
 		investimentosTableView.setItems(this.mainApp.aGrandeListaDeInvestimentos);
 	}
 
