@@ -21,6 +21,13 @@ public class DBFactory {
 
 		this.comandosDeCriacao.add(criarTabelaUsuarios);
 	*/
+		
+		String criarTabelaMeta = "CREATE TABLE META (" + "id INTEGER IDENTITY PRIMARY KEY, "
+				+ "DESCRICAO VARCHAR(5000)," + "data VARCHAR(10)," + "valor VARCHAR(50)," + "ISATINGIDO BOOLEAN," + ");";
+
+		this.comandosDeCriacao.add(criarTabelaMeta);
+		
+		
 		String criarTabelaInvestimento = "CREATE TABLE INVESTIMENTO (" + "id INTEGER IDENTITY PRIMARY KEY, "
 				+ "descricao VARCHAR(500)," + "idInvestidor VARCHAR(10)," + "idCorretora VARCHAR(10)," 
 				+ "idTipo VARCHAR(10)," + "valor VARCHAR(50)," + "rentabilidadeEsperada VARCHAR(10)," + "custosOperacionais VARCHAR(10),"+

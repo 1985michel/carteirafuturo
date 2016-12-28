@@ -6,6 +6,7 @@ import com.carteirafuturo.crud.CorretoraDAO;
 import com.carteirafuturo.crud.HistoricoDeRentabilidadeDAO;
 import com.carteirafuturo.crud.InvestidorDAO;
 import com.carteirafuturo.crud.InvestimentoFXDAO;
+import com.carteirafuturo.crud.MetaDAO;
 import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
@@ -13,6 +14,7 @@ import com.carteirafuturo.model.DadosAdministrativos;
 import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
+import com.carteirafuturo.model.Meta;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.view.ApresentacaoLabelsController;
 import com.carteirafuturo.view.AtualizaCotacaoController;
@@ -20,6 +22,7 @@ import com.carteirafuturo.view.AtualizarInvestimentoController;
 import com.carteirafuturo.view.CadastrarCorretoraController;
 import com.carteirafuturo.view.CadastrarInvestidorController;
 import com.carteirafuturo.view.CadastrarInvestimentoController;
+import com.carteirafuturo.view.CadastrarMetaController;
 import com.carteirafuturo.view.CadastrarTipoDeInvestimentoController;
 import com.carteirafuturo.view.HistoricoDeRentabilidadeController;
 import com.carteirafuturo.view.InvestimentoController;
@@ -43,6 +46,7 @@ public class MainApp extends Application {
 	public ObservableList<Investidor> aGrandeListaDeInvestidores = FXCollections.observableArrayList();
 	public ObservableList<Corretora> aGrandeListaDeCorretoras = FXCollections.observableArrayList();
 	public ObservableList<HistoricoDeRentabilidade> aGrandeListaDeHistoricoDeRentabilidade =  FXCollections.observableArrayList();
+	public ObservableList<Meta> aGrandeListaDeMetas = FXCollections.observableArrayList();
 
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
@@ -375,6 +379,46 @@ public class MainApp extends Application {
 		}
 	}
 	
+	public void showCadastrarMeta() {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/CadastrarMetaOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			CadastrarMetaController controller = loader.getController();
+			controller.setMainApp(this);
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Cadastrar Meta");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void showCadastrarInvestimento() {
 		try {
 
@@ -462,6 +506,7 @@ public class MainApp extends Application {
 		this.aGrandeListaDeCorretoras.addAll(CorretoraDAO.getTodosCorretoraes());
 		this.aGrandeListaDeTiposDeInvestimento.addAll(TipoDeInvestimentoDAO.getTodosTipoDeInvestimentoes());
 		this.aGrandeListaDeInvestimentos.addAll(InvestimentoFXDAO.getTodosInvestimentos(this));
+		this.aGrandeListaDeMetas.addAll(MetaDAO.getTodasMetas());
 	}
 	
 	

@@ -132,6 +132,11 @@ public class TelaInicialController {
 	private void showCadastrarInvestimento() {
 		this.mainApp.showCadastrarInvestimento();
 	}
+	
+	@FXML
+	private void showCadastrarMeta() {
+		this.mainApp.showCadastrarMeta();
+	}
 
 	@FXML
 	public void showResumo(){		

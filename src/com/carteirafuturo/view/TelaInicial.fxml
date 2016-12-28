@@ -30,6 +30,7 @@
                                           <Button mnemonicParsing="false" onAction="#showCadastrarTipoDeInvestimento" prefHeight="39.0" prefWidth="131.0" text="Tipo de Investimento" />
                                           <Button mnemonicParsing="false" onAction="#showCadastrarInvestidor" prefHeight="39.0" prefWidth="131.0" text="Investidor" />
                                           <Button layoutX="10.0" layoutY="51.0" mnemonicParsing="false" onAction="#showCadastrarCorretora" prefHeight="39.0" prefWidth="131.0" text="Corretora" />
+                                          <Button layoutX="10.0" layoutY="133.0" mnemonicParsing="false" onAction="#showCadastrarMeta" prefHeight="39.0" prefWidth="131.0" text="Meta" />
                                        </children>
                                     </VBox>
                                  </children></AnchorPane>

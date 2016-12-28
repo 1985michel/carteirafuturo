@@ -8,6 +8,7 @@ import com.carteirafuturo.crud.CorretoraDAO;
 import com.carteirafuturo.crud.DBFactory;
 import com.carteirafuturo.crud.HistoricoDeRentabilidadeDAO;
 import com.carteirafuturo.crud.InvestimentoFXDAO;
+import com.carteirafuturo.crud.MetaDAO;
 import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
@@ -15,6 +16,7 @@ import com.carteirafuturo.model.DadosAdministrativos;
 import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
+import com.carteirafuturo.model.Meta;
 import com.carteirafuturo.model.TipoDeInvestimento;
 
 public class TestesCrud {
@@ -58,6 +60,7 @@ public class TestesCrud {
 		*/
 		
 
+		/*
 		InvestimentoFX i = null;
 		MainApp main = new MainApp();
 		for (InvestimentoFX j : InvestimentoFXDAO.getTodosInvestimentos(main)) {
@@ -72,8 +75,17 @@ public class TestesCrud {
 				new Corretora("0", "f"));
 		i.setDadosAdministrativos(adm);
 		InvestimentoFXDAO.atualizarInvestimento(i);
+		*/
 				
 				
+		//Meta m = new Meta("2016-12-28", "descricao da meta 2", 200);
+		//MetaDAO.registrarMeta(m);
+		
+		for (Meta m2 : MetaDAO.getTodasMetas()) {
+			System.out.println(m2);
+		}
+		
+		System.out.println(MetaDAO.getMetaPeloId("1"));
 		
 	}
 
