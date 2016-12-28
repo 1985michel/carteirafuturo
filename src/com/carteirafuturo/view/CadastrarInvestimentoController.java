@@ -141,6 +141,9 @@ public class CadastrarInvestimentoController {
 		InvestimentoFXDAO.investir(investimento);
 		this.mainApp.aGrandeListaDeInvestimentos.add(investimento);
 		
+		//Recalculando a eficiência da carteira
+		this.mainApp.atribuirEficiencia();
+		
 
 		okClicked = true;
 

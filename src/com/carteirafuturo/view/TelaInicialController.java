@@ -16,13 +16,15 @@ import javafx.scene.control.Tooltip;
 public class TelaInicialController {
 
 	MainApp mainApp;
-	
+
 	MainListsAdmin mainList;
 
 	@FXML
 	private TableView<InvestimentoFX> investimentosTableView;
 	@FXML
 	private TableColumn<InvestimentoFX, String> dataAplicacaoTableColumn;
+	@FXML
+	private TableColumn<InvestimentoFX, String> eficienciaTableColumn;
 	@FXML
 	private TableColumn<InvestimentoFX, String> valorInvestidoTableColumn;
 	@FXML
@@ -41,7 +43,7 @@ public class TelaInicialController {
 
 	@FXML
 	private Label lucroLabel;
-	
+
 	@FXML
 	private Label lucroPercentualLabel;
 
@@ -106,6 +108,7 @@ public class TelaInicialController {
 				}
 			}
 		});
+		eficienciaTableColumn.setCellValueFactory(cellData -> cellData.getValue().eficienciaProperty());
 
 	}
 
@@ -132,32 +135,32 @@ public class TelaInicialController {
 	private void showCadastrarInvestimento() {
 		this.mainApp.showCadastrarInvestimento();
 	}
-	
+
 	@FXML
 	private void showCadastrarMeta() {
 		this.mainApp.showCadastrarMeta();
 	}
-	
+
 	@FXML
 	private void showMetas() {
 		this.mainApp.showMetas();
 	}
 
 	@FXML
-	public void showResumo(){		
+	public void showResumo() {
 		totalLabel.setText(MascaraFinanceira.formataMoeda(mainList.getValorAtualTotal()));
 		investidosLabel.setText(MascaraFinanceira.formataMoeda(mainList.getValorInvestidoTotal()));
 		lucroLabel.setText(MascaraFinanceira.formataMoeda(mainList.getLucroTotal()));
-		lucroPercentualLabel.setText("% "+mainList.getLucroPercentualString());
-		//dataMetaLabel
-		//valorMetaLabel
-		//acompanhamentoMetaLabel
-		
+		lucroPercentualLabel.setText("% " + mainList.getLucroPercentualString());
+		// dataMetaLabel
+		// valorMetaLabel
+		// acompanhamentoMetaLabel
+
 	}
 
 	public void atualizarExibicaoDados() {
 		this.initialize();
-		this.showResumo();		
+		this.showResumo();
 	}
 
 }

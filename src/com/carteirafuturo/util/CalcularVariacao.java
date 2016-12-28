@@ -13,6 +13,16 @@ public class CalcularVariacao {
 
 	}
 	
+	public static String calcFaltaParaMeta(double valorInicial, double valorFinal) {
+
+		double variacao = ((100 * valorFinal) / valorInicial) - 100;
+		variacao = 100 - variacao;
+
+		// NÃO É DINEHRIO É PORCENTAGEM
+		return String.format("%.2f", variacao);
+
+	}
+	
 	public static SimpleStringProperty calcProperty(double valorInicial, double valorFinal) {
 
 		double variacao = ((100 * valorFinal) / valorInicial) - 100;

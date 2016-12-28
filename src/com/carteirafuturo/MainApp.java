@@ -11,6 +11,7 @@ import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.Aplicacao;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.DadosAdministrativos;
+import com.carteirafuturo.model.EficienciaDeInvestimento;
 import com.carteirafuturo.model.HistoricoDeRentabilidade;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
@@ -548,6 +549,15 @@ public class MainApp extends Application {
 		this.aGrandeListaDeTiposDeInvestimento.addAll(TipoDeInvestimentoDAO.getTodosTipoDeInvestimentoes());
 		this.aGrandeListaDeInvestimentos.addAll(InvestimentoFXDAO.getTodosInvestimentos(this));
 		this.aGrandeListaDeMetas.addAll(MetaDAO.getTodasMetas());
+		
+		//Atrinbuindo eficiencia
+		this.atribuirEficiencia();
+	}
+
+	public void atribuirEficiencia() {
+		EficienciaDeInvestimento efi = new EficienciaDeInvestimento(aGrandeListaDeInvestimentos);
+		efi.calcularEficiencia();
+		
 	}
 	
 	

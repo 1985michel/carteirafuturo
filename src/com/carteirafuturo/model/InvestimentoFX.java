@@ -15,6 +15,9 @@ import javafx.collections.ObservableList;
 public class InvestimentoFX {
 
 	StringProperty id;
+	
+	//Eficiência não vai para o banco
+	StringProperty eficiencia;
 
 	// Dados Administrativos e Custos
 	DadosAdministrativos dadosAdministrativos;
@@ -47,6 +50,7 @@ public class InvestimentoFX {
 		this.setValorAtual(this.aplicacaoInicial.getValorInvestido());
 		this.listHistoricoDeRentabilidade = FXCollections.observableArrayList();
 		this.id = new SimpleStringProperty("");
+		this.eficiencia = new SimpleStringProperty("");
 
 	}
 
@@ -56,8 +60,7 @@ public class InvestimentoFX {
 		this.setValorAtual(this.aplicacaoInicial.getValorInvestido());
 		this.listHistoricoDeRentabilidade = FXCollections.observableArrayList();
 		this.id = new SimpleStringProperty(id);
-		
-
+		this.eficiencia = new SimpleStringProperty("");
 	}
 
 	public InvestimentoFX(String id, Aplicacao aplicacaoInicial, DadosAdministrativos dadosAdministrativos,
@@ -71,6 +74,7 @@ public class InvestimentoFX {
 		// Setando como valor atual o cultimo valor da lista ( o mais recente)
 		if (!listHistoricoDeRentabilidade.isEmpty())
 			this.setValorAtual(listHistoricoDeRentabilidade.get(listHistoricoDeRentabilidade.size() - 1).getValor());
+		this.eficiencia = new SimpleStringProperty("");
 	}
 
 	public DadosAdministrativos getDadosAdministrativos() {
@@ -179,6 +183,20 @@ public class InvestimentoFX {
 
 	public final void setLucratividade(final java.lang.String lucratividade) {
 		this.lucratividade = new SimpleStringProperty(lucratividade);
+	}
+
+	public final StringProperty eficienciaProperty() {
+		return this.eficiencia;
+	}
+	
+
+	public final java.lang.String getEficiencia() {
+		return this.eficienciaProperty().get();
+	}
+	
+
+	public final void setEficiencia(final java.lang.String eficiencia) {
+		this.eficienciaProperty().set(eficiencia);
 	}
 
 }

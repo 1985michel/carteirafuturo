@@ -91,7 +91,7 @@ public class MetasController {
 	}
 
 	private StringProperty statusDaMeta(DoubleProperty meta) {
-		return new SimpleStringProperty(CalcularVariacao.calc(mainList.getValorAtualTotal(), meta.get()));
+		return new SimpleStringProperty(CalcularVariacao.calcFaltaParaMeta(mainList.getValorAtualTotal(), meta.get())+" %");
 	}
 	
 
