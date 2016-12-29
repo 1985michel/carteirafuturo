@@ -7,10 +7,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carteirafuturo.view.CadastrarTipoDeInvestimentoController">
    <children>
-      <Label layoutX="102.0" layoutY="14.0" text="Cadastrar Tipo de Investimento" AnchorPane.topAnchor="14.0" />
+      <Label layoutX="89.0" layoutY="14.0" text="Cadastrar Tipo de Investimento" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Label layoutX="14.0" layoutY="52.0" text="Nome: " />
       <TextField fx:id="nomeTextField" layoutX="53.0" layoutY="48.0" prefHeight="25.0" prefWidth="296.0" AnchorPane.rightAnchor="20.0" />
       <Group layoutX="185.0" layoutY="85.0">
@@ -21,7 +25,7 @@
       </Group>
       <TableView fx:id="tipoDeInvestimentoTableView" layoutX="85.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="124.0">
         <columns>
-          <TableColumn fx:id="idTableColumn" prefWidth="71.0" text="id" />
+          <TableColumn fx:id="idTableColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="id" />
           <TableColumn fx:id="nomeTableColumn" prefWidth="295.0" text="Nome" />
         </columns>
          <columnResizePolicy>

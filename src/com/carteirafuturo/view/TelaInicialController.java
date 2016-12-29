@@ -20,13 +20,12 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-
 public class TelaInicialController {
 
 	MainApp mainApp;
 
 	MainListsAdmin mainList;
-	
+
 	boolean isMenuOpen = false;
 
 	@FXML
@@ -90,8 +89,10 @@ public class TelaInicialController {
 	 */
 	@FXML
 	public void initialize() {
-		
-		
+
+		// centralizando
+		investimentosTableView.getColumns().forEach(c -> centralizaTableColumn(c));
+
 		dataAplicacaoTableColumn.setCellValueFactory(cellData -> EstruturaData
 				.estruturaData(cellData.getValue().getAplicacaoInicial().dataInvestimentoProperty()));
 		valorInvestidoTableColumn.setCellValueFactory(cellData -> MascaraFinanceira
@@ -102,12 +103,11 @@ public class TelaInicialController {
 				cellData -> MascaraFinanceira.showProperty(cellData.getValue().valorAtualStringProperty()));
 		LucratividadeTableColumn.setCellValueFactory(cellData -> cellData.getValue().lucratividadePercentualProperty());
 
-		// centralizando
-		investimentosTableView.getColumns().forEach(c -> centralizaTableColumn(c));
 		// Detecta o duplo click do mouse e apresenta detalhamento
 		investimentosTableView.setOnMousePressed((event) -> {
 			if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-				this.mainApp.showInvestimentoOverview(investimentosTableView.getSelectionModel().getSelectedItem(),this);
+				this.mainApp.showInvestimentoOverview(investimentosTableView.getSelectionModel().getSelectedItem(),
+						this);
 			}
 		});
 		// Colocando tooltip
@@ -180,38 +180,36 @@ public class TelaInicialController {
 		this.showResumo();
 	}
 
-	
 	private void hideMenuLateral() {
-		//this.menuLateralAnchorPane.setMaxWidth(0);
-		//this.menuLateralAnchorPane.setMinWidth(0);
-		
+		// this.menuLateralAnchorPane.setMaxWidth(0);
+		// this.menuLateralAnchorPane.setMinWidth(0);
+
 		DoubleProperty dDrop = this.baseSplitPane.getDividers().get(0).positionProperty();
-		DoubleTransition dt = new DoubleTransition(Duration.millis(800),dDrop);
+		DoubleTransition dt = new DoubleTransition(Duration.millis(800), dDrop);
 		dt.setToValue(0);
 		dt.play();
 		isMenuOpen = false;
 
 	}
 
-	
 	private void showMenuLateral() {
-	//	this.menuLateralAnchorPane.setMaxWidth(150);
-	//	this.menuLateralAnchorPane.setMinWidth(150);
-		
+		// this.menuLateralAnchorPane.setMaxWidth(150);
+		// this.menuLateralAnchorPane.setMinWidth(150);
+
 		DoubleProperty dDrop = this.baseSplitPane.getDividers().get(0).positionProperty();
-		DoubleTransition dt = new DoubleTransition(Duration.millis(800),dDrop);
+		DoubleTransition dt = new DoubleTransition(Duration.millis(800), dDrop);
 		dt.setToValue(.2);
 		dt.play();
 		isMenuOpen = true;
 	}
-	
+
 	@FXML
-	public void animaMenu(){
-		if(isMenuOpen) hideMenuLateral();
-		else showMenuLateral();
-			
+	public void animaMenu() {
+		if (isMenuOpen)
+			hideMenuLateral();
+		else
+			showMenuLateral();
+
 	}
-	
-	
 
 }

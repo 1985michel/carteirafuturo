@@ -47,6 +47,7 @@ public class CadastrarTipoDeInvestimentoController {
 	private void initialize() {
 		idTableColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
 		nomeTableColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+		centralizaTableColumn(idTableColumn);
 	}
 
 	/**
@@ -97,6 +98,9 @@ public class CadastrarTipoDeInvestimentoController {
 		dialogStage.close();
 	}
 
+	private void centralizaTableColumn(TableColumn tc) {
+		tc.setStyle("-fx-alignment: CENTER;");
+	}
 	
 
 	
