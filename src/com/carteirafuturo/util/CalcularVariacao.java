@@ -22,6 +22,15 @@ public class CalcularVariacao {
 
 	}
 	
+	public static double calcFaltaParaMetaDouble(double valorAtual, double meta) {
+
+		double variacao = ((100 * valorAtual) / meta);		
+
+		// NÃO É DINEHRIO É PORCENTAGEM
+		return variacao;
+
+	}
+	
 	public static SimpleStringProperty calcProperty(double valorInicial, double valorFinal) {
 
 		double variacao = ((100 * valorFinal) / valorInicial) - 100;
