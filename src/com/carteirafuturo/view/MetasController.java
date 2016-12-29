@@ -32,8 +32,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class MetasController {
-	
-	static Task copyWorker;
 
 	MainApp mainApp;
 
@@ -47,7 +45,6 @@ public class MetasController {
 
 	@FXML
 	private TableView<Meta> metasTableView;
-	
 
 	@FXML
 	private TableColumn<Meta, Boolean> isAtingidaTableColumn;
@@ -75,63 +72,49 @@ public class MetasController {
 	 */
 	@FXML
 	private void initialize() {
+		// centralizando
+		metasTableView.getColumns().forEach(c -> centralizaTableColumn(c));
 		isAtingidaTableColumn.setCellValueFactory(cellData -> cellData.getValue().isAtingidoProperty());
 		dataTableColumn
 				.setCellValueFactory(cellData -> EstruturaData.estruturaData(cellData.getValue().dataProperty()));
 		valorTableColumn.setCellValueFactory(
 				cellData -> MascaraFinanceira.showProperty(cellData.getValue().valorASerAtingidoProperty()));
-	//	acompanhamentoTableColumn
-		//	.setCellValueFactory(cellData -> statusDaMeta(cellData.getValue().valorASerAtingidoProperty()));
-		
-		acompanhamentoTableColumn
-		.setCellValueFactory(cellData -> statusDaMetaDoubleProperty(cellData.getValue().valorASerAtingidoProperty()).asObject());
-
-		// centralizando
-		metasTableView.getColumns().forEach(c -> centralizaTableColumn(c));
+		// O as object abaixo permite usar o Double na declaração da coluna
+		acompanhamentoTableColumn.setCellValueFactory(
+				cellData -> statusDaMetaDoubleProperty(cellData.getValue().valorASerAtingidoProperty()).asObject());
 
 		// Colocando o ProgressBar
-
-		
-
-		//acompanhamentoTableColumn.setCellValueFactory(cellData -> new ProgressBar(50));
-		
-
-		Callback<TableColumn<Meta, Double>, TableCell<Meta, Double>> cellFactory =
-			    new Callback<TableColumn<Meta, Double>, TableCell<Meta, Double>>() {
+		Callback<TableColumn<Meta, Double>, TableCell<Meta, Double>> cellFactory = new Callback<TableColumn<Meta, Double>, TableCell<Meta, Double>>() {
 			public TableCell call(TableColumn<Meta, Double> p) {
-			    return new TableCell<Meta, Double>() {
+				return new TableCell<Meta, Double>() {
 
-			        private ProgressBar pb = new ProgressBar(50);
-			      //  private Text txt = new Text();
-			      //  private HBox hBox = HBoxBuilder.create().children(pb, txt).alignment(Pos.CENTER_LEFT).spacing(5).build();
-			        @Override
-			        public void updateItem(Double item, boolean empty) {
-			            super.updateItem(item, empty);
-			            if (empty) {
-			                setText(null);
-			                setGraphic(null);
-			            } else {
-			            	pb.setProgress(0);
-			        		//pb.progressProperty().unbind();
-			        		//pb.progressProperty().bind(new Double(item));
-			                //pb.setProgress(item);
-			            	
-			                pb.setProgress(item/100);
-			                
-			               // pb.progressProperty().bind(item.Ob);
-	                        pb.prefWidthProperty().bind(this.widthProperty());
-			              //  txt.setText("value: " + item);
-			              //  setGraphic(hBox);
-			                setGraphic(pb);
+					private ProgressBar pb = new ProgressBar(50);
 
-			                setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-			            }
-			        }
-			    };
+					// private Text txt = new Text();
+					// private HBox hBox = HBoxBuilder.create().children(pb,
+					// txt).alignment(Pos.CENTER_LEFT).spacing(5).build();
+					@Override
+					public void updateItem(Double item, boolean empty) {
+						super.updateItem(item, empty);
+						if (empty) {
+							setText(null);
+							setGraphic(null);
+						} else {
+							pb.setProgress(0);
+							pb.setProgress(item / 100);
+							pb.prefWidthProperty().bind(this.widthProperty());
+							// txt.setText("value: " + item);
+							// setGraphic(hBox);
+							setGraphic(pb);
+
+							setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+						}
+					}
+				};
 			}
-			};
-			
-			acompanhamentoTableColumn.setCellFactory(cellFactory);
+		};
+
+		acompanhamentoTableColumn.setCellFactory(cellFactory);
 
 		// Colocando tooltip
 		metasTableView.setRowFactory(tv -> new TableRow<Meta>() {
@@ -143,7 +126,7 @@ public class MetasController {
 				if (m == null) {
 					setTooltip(null);
 				} else {
-					tooltip.setText(m.getDescricao() + "Valor Atual: R$"
+					tooltip.setText(m.getDescricao() + "\n\nValor Atual: R$"
 							+ MascaraFinanceira.show(mainList.getValorAtualTotal()));
 					setTooltip(tooltip);
 				}
@@ -161,12 +144,10 @@ public class MetasController {
 				CalcularVariacao.calcFaltaParaMeta(mainList.getValorAtualTotal(), meta.get()) + " %");
 
 	}
-	
-	private DoubleProperty statusDaMetaDoubleProperty(DoubleProperty meta) {
 
+	private DoubleProperty statusDaMetaDoubleProperty(DoubleProperty meta) {
 		return new SimpleDoubleProperty(
 				CalcularVariacao.calcFaltaParaMetaDouble(mainList.getValorAtualTotal(), meta.get()));
-
 	}
 
 	/**
@@ -189,23 +170,5 @@ public class MetasController {
 	private void showCadastrarMeta() {
 		this.mainApp.showCadastrarMeta();
 	}
-	
-	//Do ProgressBar
-	
-	public Task createWorker(final int numFiles) {
-		return new Task() {
-			@Override
-			protected Object call() throws Exception {
-				
-					updateProgress(50, 100);// <<<<<<<<<<<<<<
-				
-				return true;
-			}
-		};
-	}
-
-
-
-
 
 }
