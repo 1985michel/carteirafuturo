@@ -47,6 +47,7 @@ public class MetasController {
 
 	@FXML
 	private TableView<Meta> metasTableView;
+	
 
 	@FXML
 	private TableColumn<Meta, Boolean> isAtingidaTableColumn;
