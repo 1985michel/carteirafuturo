@@ -76,7 +76,7 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 		// Se houver algum investimento com o tipo escolhido o botão de deleção
 		// será desabilitado e um tooltipo será apresentado
 		if (new MainListsAdmin(this.mainApp).temInvestimentoComAqueleTipo(t)) {
-			deletarGroupInto.setTooltip(new Tooltip("Há investimentos vinculados a Tipo de Investimento.\nDeleção bloqueada."));
+			deletarGroupInto.setTooltip(new Tooltip("Há investimentos vinculados a este Tipo de Investimento.\nDeleção bloqueada."));
 			this.deletarButton.setDisable(true);
 		}else{
 			deletarGroupInto.toBack();
