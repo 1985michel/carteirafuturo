@@ -19,6 +19,7 @@ import com.carteirafuturo.model.Meta;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.view.ApresentacaoLabelsController;
 import com.carteirafuturo.view.AtualizaCotacaoController;
+import com.carteirafuturo.view.AtualizarEDeletarTipoDeInvestimentoController;
 import com.carteirafuturo.view.AtualizarInvestimentoController;
 import com.carteirafuturo.view.CadastrarCorretoraController;
 import com.carteirafuturo.view.CadastrarInvestidorController;
@@ -310,6 +311,51 @@ public class MainApp extends Application {
 		}
 	}
 	
+	public void showAtualizarEDeletarTipoDeInvestimento(TipoDeInvestimento t, CadastrarTipoDeInvestimentoController cadController) {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/AtualizarEDeletarTipoDeInvestimento.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			AtualizarEDeletarTipoDeInvestimentoController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.setTipoDeInvestimento(t);
+			controller.povoarFormulario();
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Atualizar e Deletar Tipo de Investimento");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			//bloqueando recisase
+			dialogStage.setResizable(false);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			cadController.atualizarDadosExibidos();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void showCadastrarInvestidor() {
 		try {
 
@@ -328,7 +374,7 @@ public class MainApp extends Application {
 			dialogStage.setTitle("Cadastrar Investidor");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
-			dialogStage.setResizable(true);
+		
 			// dialogStage.getIcons().add(new
 			// Image("file:resources/images/edit.png"));
 			Scene scene = new Scene(page);

@@ -22,16 +22,15 @@ public class CadastrarTipoDeInvestimentoController {
 
 	@FXML
 	private TextField nomeTextField;
-    @FXML
-    private TableView<TipoDeInvestimento> tipoDeInvestimentoTableView;
+	@FXML
+	private TableView<TipoDeInvestimento> tipoDeInvestimentoTableView;
 
-    @FXML
-    private TableColumn<TipoDeInvestimento, String> idTableColumn;
+	@FXML
+	private TableColumn<TipoDeInvestimento, String> idTableColumn;
 
-    @FXML
-    private TableColumn<TipoDeInvestimento, String> nomeTableColumn;
-	
-	
+	@FXML
+	private TableColumn<TipoDeInvestimento, String> nomeTableColumn;
+
 	/**
 	 * Ligando ao main
 	 */
@@ -45,9 +44,21 @@ public class CadastrarTipoDeInvestimentoController {
 	 */
 	@FXML
 	private void initialize() {
+		centralizaTableColumn(idTableColumn);
 		idTableColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
 		nomeTableColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
-		centralizaTableColumn(idTableColumn);
+
+		// Detecta o duplo click do mouse e apresenta detalhamento
+		tipoDeInvestimentoTableView.setOnMousePressed((event) -> {
+			if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+				this.mainApp.showAtualizarEDeletarTipoDeInvestimento(tipoDeInvestimentoTableView.getSelectionModel().getSelectedItem(),
+						this);
+			}
+		});
+	}
+	
+	public void atualizarDadosExibidos(){
+		this.initialize();
 	}
 
 	/**
@@ -58,7 +69,6 @@ public class CadastrarTipoDeInvestimentoController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
-	
 
 	/**
 	 * Retorna true se o ok for clicado
@@ -73,7 +83,6 @@ public class CadastrarTipoDeInvestimentoController {
 	@FXML
 	private void handleOk() {
 		String nome = nomeTextField.getText();
-		
 
 		okClicked = true;
 
@@ -81,12 +90,10 @@ public class CadastrarTipoDeInvestimentoController {
 		TipoDeInvestimento tipo = new TipoDeInvestimento(nome);
 		TipoDeInvestimentoDAO.registrarTipoDeInvestimento(tipo);
 		this.mainApp.aGrandeListaDeTiposDeInvestimento.add(tipo);
-		
 
 		// Colocando a variação no db
-		
+
 		dialogStage.close();
-	
 
 	}
 
@@ -101,9 +108,5 @@ public class CadastrarTipoDeInvestimentoController {
 	private void centralizaTableColumn(TableColumn tc) {
 		tc.setStyle("-fx-alignment: CENTER;");
 	}
-	
-
-	
-	
 
 }
