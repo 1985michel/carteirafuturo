@@ -1,6 +1,5 @@
 package com.carteirafuturo.view;
 
-
 import com.carteirafuturo.MainApp;
 import com.carteirafuturo.crud.CorretoraDAO;
 import com.carteirafuturo.model.Corretora;
@@ -9,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 public class CadastrarCorretoraController {
@@ -23,14 +23,14 @@ public class CadastrarCorretoraController {
 
 	@FXML
 	private TextField nomeTextField;
-    @FXML
-    private TableView<Corretora> corretorasTableView;
+	@FXML
+	private TableView<Corretora> corretorasTableView;
 
-    @FXML
-    private TableColumn<Corretora, String> idTableColumn;
+	@FXML
+	private TableColumn<Corretora, String> idTableColumn;
 
-    @FXML
-    private TableColumn<Corretora, String> nomeTableColumn;
+	@FXML
+	private TableColumn<Corretora, String> nomeTableColumn;
 
 	/**
 	 * Ligando ao main
@@ -72,6 +72,16 @@ public class CadastrarCorretoraController {
 	private void handleOk() {
 		String nome = nomeTextField.getText();
 
+		// Protegendo da não informação do nome
+		if (nome.length() < 2) {
+			Tooltip tooltip = new Tooltip("Informe o nome!");
+			nomeTextField.setTooltip(tooltip);
+			tooltip.show(dialogStage);
+			tooltip.setAutoHide(true);
+
+			return;
+		}
+
 		okClicked = true;
 
 		// Criando o nome tipo
@@ -79,10 +89,7 @@ public class CadastrarCorretoraController {
 		CorretoraDAO.registrarCorretora(corretora);
 		this.mainApp.aGrandeListaDeCorretoras.add(corretora);
 
-		
 		dialogStage.close();
-		
-		
 
 	}
 

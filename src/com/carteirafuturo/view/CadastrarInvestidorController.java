@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 public class CadastrarInvestidorController {
@@ -46,9 +47,21 @@ public class CadastrarInvestidorController {
 	 */
 	@FXML
 	private void initialize() {
+		// centralizando
+		investidoresTableView.getColumns().forEach(c -> centralizaTableColumn(c));
 		IdTableColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
 		nomeTableColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+
+		// Detecta o duplo click do mouse e apresenta detalhamento
+		investidoresTableView.setOnMousePressed((event) -> {
+			if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+				this.mainApp.showAtualizarEDeletarInvestidor(
+						investidoresTableView.getSelectionModel().getSelectedItem(), this);
+			}
+		});
 	}
+	
+	
 
 	/**
 	 * Define o palco deste dialog. Usado para fecha-lo, por exemplo
@@ -72,6 +85,16 @@ public class CadastrarInvestidorController {
 	@FXML
 	private void handleOk() {
 		String nome = nomeTextField.getText();
+		
+		// Protegendo da não informação do nome
+		if (nome.length() < 2) {
+			Tooltip tooltip = new Tooltip("Informe o nome!");
+			nomeTextField.setTooltip(tooltip);
+			tooltip.show(dialogStage);
+			tooltip.setAutoHide(true);
+
+			return;
+		}
 
 		okClicked = true;
 
@@ -79,12 +102,10 @@ public class CadastrarInvestidorController {
 		Investidor investidor = new Investidor(nome);
 		InvestidorDAO.registrarInvestidor(investidor);
 		this.mainApp.aGrandeListaDeInvestidores.add(investidor);
-		
 
 		// Colocando a variação no db
 
 		dialogStage.close();
-		
 
 	}
 
@@ -94,6 +115,15 @@ public class CadastrarInvestidorController {
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
+	}
+
+	private void centralizaTableColumn(TableColumn tc) {
+		tc.setStyle("-fx-alignment: CENTER;");
+	}
+
+	public void atualizarDadosExibidos() {
+		this.initialize();
+		
 	}
 
 }

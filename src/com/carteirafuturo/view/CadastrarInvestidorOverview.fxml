@@ -7,13 +7,17 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carteirafuturo.view.CadastrarInvestidorController">
    <children>
-      <Label layoutX="132.0" layoutY="14.0" text="Cadastrar Investidor" AnchorPane.topAnchor="14.0" />
+      <Label layoutX="123.0" layoutY="14.0" text="Cadastrar Investidor" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Label layoutX="14.0" layoutY="52.0" text="Nome: " />
-      <TextField fx:id="nomeTextField" layoutX="53.0" layoutY="48.0" prefHeight="25.0" prefWidth="296.0" AnchorPane.rightAnchor="20.0" />
-      <Group layoutX="185.0" layoutY="85.0">
+      <TextField fx:id="nomeTextField" layoutX="53.0" layoutY="48.0" prefHeight="25.0" prefWidth="304.0" AnchorPane.rightAnchor="10.0" />
+      <Group layoutX="185.0" layoutY="85.0" AnchorPane.rightAnchor="10.0">
          <children>
             <Button cancelButton="true" layoutX="113.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancelar" />
             <Button defaultButton="true" maxWidth="108.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="108.0" text="Gravar" />
@@ -21,7 +25,7 @@
       </Group>
       <TableView fx:id="investidoresTableView" layoutX="14.0" layoutY="117.0" prefHeight="125.0" prefWidth="347.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="124.0">
         <columns>
-          <TableColumn fx:id="IdTableColumn" prefWidth="66.0" text="Id" />
+          <TableColumn fx:id="IdTableColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Id" />
           <TableColumn fx:id="nomeTableColumn" prefWidth="300.0" text="Nome" />
         </columns>
          <columnResizePolicy>

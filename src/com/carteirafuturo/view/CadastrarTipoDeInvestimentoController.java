@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 public class CadastrarTipoDeInvestimentoController {
@@ -51,13 +52,13 @@ public class CadastrarTipoDeInvestimentoController {
 		// Detecta o duplo click do mouse e apresenta detalhamento
 		tipoDeInvestimentoTableView.setOnMousePressed((event) -> {
 			if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-				this.mainApp.showAtualizarEDeletarTipoDeInvestimento(tipoDeInvestimentoTableView.getSelectionModel().getSelectedItem(),
-						this);
+				this.mainApp.showAtualizarEDeletarTipoDeInvestimento(
+						tipoDeInvestimentoTableView.getSelectionModel().getSelectedItem(), this);
 			}
 		});
 	}
-	
-	public void atualizarDadosExibidos(){
+
+	public void atualizarDadosExibidos() {
 		this.initialize();
 	}
 
@@ -83,6 +84,16 @@ public class CadastrarTipoDeInvestimentoController {
 	@FXML
 	private void handleOk() {
 		String nome = nomeTextField.getText();
+
+		// Protegendo da não informação do nome
+		if (nome.length() < 2) {
+			Tooltip tooltip = new Tooltip("Informe o nome!");
+			nomeTextField.setTooltip(tooltip);
+			tooltip.show(dialogStage);
+			tooltip.setAutoHide(true);
+
+			return;
+		}
 
 		okClicked = true;
 

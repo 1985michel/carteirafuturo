@@ -100,5 +100,13 @@ public class MainListsAdmin {
 		}
 		return false;
 	}
+	
+	public boolean temInvestimentoComAqueleInvestidor(Investidor iv){
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentos) {
+			if(i.getDadosAdministrativos().getInvestidor().getId().equalsIgnoreCase(iv.getId()))
+				return true;
+		}
+		return false;
+	}
 
 }
