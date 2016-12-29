@@ -187,7 +187,7 @@ public class TelaInicialController {
 		
 		DoubleProperty dDrop = this.baseSplitPane.getDividers().get(0).positionProperty();
 		DoubleTransition dt = new DoubleTransition(Duration.millis(800),dDrop);
-		dt.setToValue(.0);
+		dt.setToValue(0);
 		dt.play();
 		isMenuOpen = false;
 

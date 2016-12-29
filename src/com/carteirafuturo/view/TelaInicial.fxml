@@ -149,7 +149,7 @@
                               </TableView>
                            </children>
                         </AnchorPane>
-                        <Button defaultButton="true" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#animaMenu" prefHeight="10.0" prefWidth="400.0" rotate="-90.0" text="Menu" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button defaultButton="true" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#animaMenu" prefHeight="10.0" prefWidth="1000.0" rotate="-90.0" text="Menu" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <padding>
                               <Insets right="-25.0" />
                            </padding></Button>
