@@ -253,6 +253,9 @@ public class MainApp extends Application {
 			
 			//Setando o investimento que vai ser trabalhado
 			controller.setInvestimento(i);
+			
+			//bloqueando recisase
+			dialogStage.setResizable(false);
 
 			// Show
 			
@@ -293,6 +296,9 @@ public class MainApp extends Application {
 			// Dando ao controlador poderes sobre seu próprio dialogStage
 			controller.setDialogStage(dialogStage);
 			
+			//bloqueando recisase
+			dialogStage.setResizable(false);
+			
 			// Show
 			
 			dialogStage.showAndWait();
@@ -332,6 +338,9 @@ public class MainApp extends Application {
 			// Dando ao controlador poderes sobre seu próprio dialogStage
 			controller.setDialogStage(dialogStage);
 			
+			//bloqueando recisase
+			dialogStage.setResizable(false);
+			
 			// Show
 			
 			dialogStage.showAndWait();
@@ -370,6 +379,9 @@ public class MainApp extends Application {
 
 			// Dando ao controlador poderes sobre seu próprio dialogStage
 			controller.setDialogStage(dialogStage);
+			
+			//bloqueando recisase
+			dialogStage.setResizable(false);
 			
 			// Show
 			
@@ -411,8 +423,10 @@ public class MainApp extends Application {
 			// Dando ao controlador poderes sobre seu próprio dialogStage
 			controller.setDialogStage(dialogStage);
 			
-			// Show
+			//bloqueando recisase
+			dialogStage.setResizable(false);
 			
+			// Show			
 			dialogStage.showAndWait();
 			
 			
@@ -451,8 +465,7 @@ public class MainApp extends Application {
 			// Dando ao controlador poderes sobre seu próprio dialogStage
 			controller.setDialogStage(dialogStage);
 			
-			// Show
-			
+			// Show			
 			dialogStage.showAndWait();
 			
 			
@@ -492,8 +505,10 @@ public class MainApp extends Application {
 			// Dando ao controlador poderes sobre seu próprio dialogStage
 			controller.setDialogStage(dialogStage);
 			
-			// Show
+			//bloqueando recisase
+			dialogStage.setResizable(false);
 			
+			// Show			
 			dialogStage.showAndWait();
 			telaInicialController.atualizarExibicaoDados();
 			
