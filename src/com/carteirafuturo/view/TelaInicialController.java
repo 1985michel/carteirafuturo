@@ -27,7 +27,7 @@ public class TelaInicialController {
 
 	MainListsAdmin mainList;
 	
-	boolean isMenuOpen = true;
+	boolean isMenuOpen = false;
 
 	@FXML
 	private SplitPane baseSplitPane;
