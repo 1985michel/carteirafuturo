@@ -92,5 +92,13 @@ public class MainListsAdmin {
 		return String.format("%.2f", lucro);
 
 	}
+	
+	public boolean temInvestimentoComAqueleTipo(TipoDeInvestimento t){
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentos) {
+			if(i.getDadosAdministrativos().getTipo().getId().equalsIgnoreCase(t.getId()))
+				return true;
+		}
+		return false;
+	}
 
 }

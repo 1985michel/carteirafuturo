@@ -3,16 +3,24 @@ package com.carteirafuturo.view;
 import com.carteirafuturo.MainApp;
 import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.TipoDeInvestimento;
+import com.carteirafuturo.util.MainListsAdmin;
 
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class AtualizarEDeletarTipoDeInvestimentoController {
-	
+
 	TipoDeInvestimento t;
-	
+
 	MainApp mainApp;
 
 	// Palco desse dialog
@@ -26,23 +34,31 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 
 	@FXML
 	private TextField nomeTextField;
-	
+
+	@FXML
+	private Button deletarButton;
+
+	@FXML
+	private Label deletarGroupInto;
+
 	/**
 	 * Ligando ao main
 	 */
 	public void setMainApp(MainApp main) {
 		this.mainApp = main;
+
 	}
-	
-	public void setTipoDeInvestimento(TipoDeInvestimento t){
-		this.t= t;
+
+	public void setTipoDeInvestimento(TipoDeInvestimento t) {
+		this.t = t;
 	}
 
 	/**
 	 * Inicializa a classe controller. Método chamado ao carregar o fxml
 	 */
 	@FXML
-	private void initialize() {}
+	private void initialize() {
+	}
 
 	/**
 	 * Define o palco deste dialog. Usado para fecha-lo, por exemplo
@@ -52,12 +68,20 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
-	
-	public void povoarFormulario(){
+
+	public void povoarFormulario() {
 		this.idTipoDeInvestimentoLabel.setText(t.getId());
 		this.nomeTextField.setText(t.getNome());
+
+		// Se houver algum investimento com o tipo escolhido o botão de deleção
+		// será desabilitado e um tooltipo será apresentado
+		if (new MainListsAdmin(this.mainApp).temInvestimentoComAqueleTipo(t)) {
+			deletarGroupInto.setTooltip(new Tooltip("Há investimentos vinculados a Tipo de Investimento.\nDeleção bloqueada."));
+			this.deletarButton.setDisable(true);
+		}else{
+			deletarGroupInto.toBack();
+		}
 	}
-	
 
 	/**
 	 * Retorna true se o ok for clicado
@@ -72,19 +96,16 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 	@FXML
 	private void handleOk() {
 		String nome = nomeTextField.getText();
-		
 
 		okClicked = true;
 
-		//Atualizando
+		// Atualizando
 		t.setNome(nome);
-		
 
 		// Atualizando no banco
 		TipoDeInvestimentoDAO.atualizarTipoDeInvestimento(t);
-		
+
 		dialogStage.close();
-	
 
 	}
 
@@ -95,18 +116,17 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 	private void handleCancel() {
 		dialogStage.close();
 	}
-	
+
 	@FXML
-	private void deleta(){
-		
-		//deltando do banco
+	private void deleta() {
+
+		// deltando do banco
 		TipoDeInvestimentoDAO.deletarTipoDeInvestimento(t);
-		
-		//Deletando da lista
+
+		// Deletando da lista
 		this.mainApp.aGrandeListaDeTiposDeInvestimento.remove(t);
-		
+
 		dialogStage.close();
 	}
-
 
 }
