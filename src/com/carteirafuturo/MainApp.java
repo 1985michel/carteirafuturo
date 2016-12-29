@@ -19,6 +19,7 @@ import com.carteirafuturo.model.Meta;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.view.ApresentacaoLabelsController;
 import com.carteirafuturo.view.AtualizaCotacaoController;
+import com.carteirafuturo.view.AtualizarEDeletarCorretoraController;
 import com.carteirafuturo.view.AtualizarEDeletarInvestidorController;
 import com.carteirafuturo.view.AtualizarEDeletarTipoDeInvestimentoController;
 import com.carteirafuturo.view.AtualizarInvestimentoController;
@@ -481,6 +482,51 @@ public class MainApp extends Application {
 			
 			dialogStage.showAndWait();
 			
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showAtualizarEDeletarCorretora(Corretora c, CadastrarCorretoraController cadController) {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/AtualizarEDeletarCorretora.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			AtualizarEDeletarCorretoraController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.setCorretora(c);
+			controller.povoarFormulario();
+						
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Atualizar e Deletar Corretora");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			//bloqueando recisase
+			dialogStage.setResizable(false);
+			
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			cadController.atualizarDadosExibidos();
 			
 			
 

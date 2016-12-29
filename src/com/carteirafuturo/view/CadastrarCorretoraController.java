@@ -45,8 +45,18 @@ public class CadastrarCorretoraController {
 	 */
 	@FXML
 	private void initialize() {
+		corretorasTableView.getColumns().forEach(c -> centralizaTableColumn(c));
+
 		idTableColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
 		nomeTableColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+
+		// Detecta o duplo click do mouse e apresenta detalhamento
+		corretorasTableView.setOnMousePressed((event) -> {
+			if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+				this.mainApp.showAtualizarEDeletarCorretora(corretorasTableView.getSelectionModel().getSelectedItem(),
+						this);
+			}
+		});
 	}
 
 	/**
@@ -101,4 +111,12 @@ public class CadastrarCorretoraController {
 		dialogStage.close();
 	}
 
+	public void atualizarDadosExibidos() {
+		this.initialize();
+
+	}
+
+	private void centralizaTableColumn(TableColumn tc) {
+		tc.setStyle("-fx-alignment: CENTER;");
+	}
 }

@@ -108,5 +108,13 @@ public class MainListsAdmin {
 		}
 		return false;
 	}
+	
+	public boolean temInvestimentoComAquelaCorretora(Corretora c){
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentos) {
+			if(i.getDadosAdministrativos().getCorretora().getId().equalsIgnoreCase(c.getId()))
+				return true;
+		}
+		return false;
+	}
 
 }
