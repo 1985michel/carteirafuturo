@@ -1,6 +1,8 @@
 package com.carteirafuturo.model;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -20,6 +22,7 @@ public class DadosAdministrativos {
 	StringProperty descricao;
 	DoubleProperty rentabilidadeEsperada;
 	StringProperty plano;
+	BooleanProperty isResgatado;
 
 	Investidor investidor;
 	Corretora corretora;
@@ -36,6 +39,20 @@ public class DadosAdministrativos {
 		this.plano = new SimpleStringProperty(plano);
 		this.investidor = investidor;
 		this.corretora = corretora;
+		this.isResgatado = new SimpleBooleanProperty(false);
+
+	}
+	
+	public DadosAdministrativos(TipoDeInvestimento tipo, String descricao, double rentabilidadeEsperada, String plano, Investidor investidor,
+			Corretora corretora, boolean isResgatado) {
+		
+		this.tipo = tipo;
+		this.descricao = new SimpleStringProperty(descricao);
+		this.rentabilidadeEsperada = new SimpleDoubleProperty(rentabilidadeEsperada);
+		this.plano = new SimpleStringProperty(plano);
+		this.investidor = investidor;
+		this.corretora = corretora;
+		this.isResgatado = new SimpleBooleanProperty(isResgatado);
 
 	}
 
@@ -110,6 +127,21 @@ public class DadosAdministrativos {
 	public final void setPlano(final java.lang.String plano) {
 		this.planoProperty().set(plano);
 	}
+
+	public final BooleanProperty isResgatadoProperty() {
+		return this.isResgatado;
+	}
+	
+
+	public final boolean isResgatado() {
+		return this.isResgatadoProperty().get();
+	}
+	
+
+	public final void setIsResgatado(final boolean isResgatado) {
+		this.isResgatadoProperty().set(isResgatado);
+	}
+	
 	
 	
 	

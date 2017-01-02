@@ -48,6 +48,12 @@ public class InvestimentoController {
 	}
 	
 	@FXML
+	public void showResgatarInvestimento(){
+		this.mainApp.showResgatarInvestimentoOverview(this.investimento);
+		this.dialogStage.close();
+	}
+	
+	@FXML
 	public void showAtualizarInvestimento(){
 		
 		this.mainApp.showAtualizarInvestimento(investimento);

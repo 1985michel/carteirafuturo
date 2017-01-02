@@ -53,6 +53,9 @@ public class ApresentacaoLabelsController {
 
 	@FXML
 	private Label idLabel;
+	
+	@FXML
+	private Label isResgatadoLabel;
 
 	@FXML
 	private Button atualizarCotacaoButton;
@@ -99,6 +102,12 @@ public class ApresentacaoLabelsController {
 		this.custosOperacionaisLabel.setText("R$ 0,00");
 		this.rentabilidadeEsperadaLabel.setText(MascaraFinanceira.show(dA.getRentabilidadeEsperada()) + " %");
 		this.planoLabel.setText(i.getDadosAdministrativos().getPlano());
+		if(i.getDadosAdministrativos().isResgatado())
+			this.isResgatadoLabel.setText("[RESGATADO]");
+		else
+			this.isResgatadoLabel.setText("");
+
+			
 
 		Aplicacao aI = i.getAplicacaoInicial();
 		this.dataDoInvestimentoLabel.setText(EstruturaData.estruturaData(aI.getDataInvestimento()));

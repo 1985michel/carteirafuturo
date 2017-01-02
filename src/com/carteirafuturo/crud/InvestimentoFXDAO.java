@@ -28,7 +28,7 @@ public class InvestimentoFXDAO {
 		
 			CRUD crud = new CRUD();
 			resultSet = crud.getResultSet(
-					"INSERT INTO INVESTIMENTO (descricao,valor,data,idTipo,idInvestidor,idcorretora,rentabilidadeEsperada,plano) VALUES ('"
+					"INSERT INTO INVESTIMENTO (descricao,valor,data,idTipo,idInvestidor,idcorretora,rentabilidadeEsperada,plano,isresgatado) VALUES ('"
 							+ i.getDadosAdministrativos().getDescricao() + "','" + i.getAplicacaoInicial().getValorInvestido() + "','" 
 							+ i.getAplicacaoInicial().getDataInvestimento() + "','"
 							+ i.getDadosAdministrativos().getTipo().getId() 
@@ -36,6 +36,7 @@ public class InvestimentoFXDAO {
 							+ "','" + i.getDadosAdministrativos().getCorretora().getId()
 							+ "','" + i.getDadosAdministrativos().getRentabilidadeEsperada()
 							+ "','" + i.getDadosAdministrativos().getPlano()
+							+ "','" + i.getDadosAdministrativos().isResgatado()
 							+ "');CALL IDENTITY();");
 
 			if (resultSet.next()) {
@@ -80,6 +81,7 @@ public class InvestimentoFXDAO {
 					+ "', custosOperacionais= '" + i.getDadosAdministrativos().getCustosOperacionais()
 					+ "', data= '" + i.getAplicacaoInicial().getDataInvestimento()
 					+ "', plano= '" + i.getDadosAdministrativos().getPlano()
+					+ "', isResgatado= '" + i.getDadosAdministrativos().isResgatado()
 					+ "' WHERE id='" + i.getId() + "'");
 
 		} catch (Exception e) {
@@ -119,8 +121,55 @@ public class InvestimentoFXDAO {
 				double rentabilidadeEsperada = new Double(resultSet.getString("rentabilidadeEsperada"));
 				String plano = resultSet.getString("plano");
 				String data = resultSet.getString("data");
+				boolean isResgatado =  resultSet.getBoolean("isResgatado");
 				
-				DadosAdministrativos dA = new DadosAdministrativos(tipo, descricao, rentabilidadeEsperada, plano, investidor, corretora);
+				DadosAdministrativos dA = new DadosAdministrativos(tipo, descricao, rentabilidadeEsperada, plano, investidor, corretora,isResgatado);
+				Aplicacao aI = new Aplicacao(data, valor);
+				
+				lista.add(new InvestimentoFX(idt,aI,dA,listsAdmin.getTodosHistoricosDeRentabilidadePorInvestimentoFXId(idt)));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return lista;
+
+	}
+	
+	public static ObservableList<InvestimentoFX> getTodosInvestimentosAtivos(MainApp main) {
+
+		MainListsAdmin listsAdmin = new MainListsAdmin(main);
+		int id = 0;
+		ObservableList<InvestimentoFX> lista = FXCollections.observableArrayList();
+
+		// Gravando o cliente ao banco
+		ResultSet resultSet = null;
+		try {
+
+			CRUD crud = new CRUD();
+			resultSet = crud.getResultSet("SELECT * FROM INVESTIMENTO WHERE ISRESGATADO= FALSE");
+
+			while (resultSet.next()) {
+				String idt = resultSet.getInt("id") + "";
+				TipoDeInvestimento tipo = listsAdmin.getTipoDeInvestimentoById(resultSet.getString("idTipo"));
+				Corretora corretora = listsAdmin.getCorretoraById(resultSet.getString("idCorretora"));
+				Investidor investidor = listsAdmin.getInvestidorById(resultSet.getString("idInvestidor"));
+				
+				String descricao = resultSet.getString("descricao");
+				double valor = new Double(resultSet.getString("valor"));
+				double rentabilidadeEsperada = new Double(resultSet.getString("rentabilidadeEsperada"));
+				String plano = resultSet.getString("plano");
+				String data = resultSet.getString("data");
+				boolean isResgatado =  resultSet.getBoolean("isResgatado");
+				
+				DadosAdministrativos dA = new DadosAdministrativos(tipo, descricao, rentabilidadeEsperada, plano, investidor, corretora,isResgatado);
 				Aplicacao aI = new Aplicacao(data, valor);
 				
 				lista.add(new InvestimentoFX(idt,aI,dA,listsAdmin.getTodosHistoricosDeRentabilidadePorInvestimentoFXId(idt)));

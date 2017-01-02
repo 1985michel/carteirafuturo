@@ -117,6 +117,14 @@
                         <Insets right="20.0" />
                      </GridPane.margin>
                   </Group>
+                  <Label fx:id="isResgatadoLabel" text="isResgatadoLabel" textFill="#dd0a0a" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
                </children>
             </GridPane>
          </content>

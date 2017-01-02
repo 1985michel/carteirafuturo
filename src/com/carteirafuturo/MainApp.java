@@ -32,6 +32,7 @@ import com.carteirafuturo.view.DeletarInvestimentoController;
 import com.carteirafuturo.view.HistoricoDeRentabilidadeController;
 import com.carteirafuturo.view.InvestimentoController;
 import com.carteirafuturo.view.MetasController;
+import com.carteirafuturo.view.ResgatarInvestimentoController;
 import com.carteirafuturo.view.TelaInicialController;
 
 import javafx.application.Application;
@@ -48,6 +49,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 	
 	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentos = FXCollections.observableArrayList();
+	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentosResgatados = FXCollections.observableArrayList();
 	public ObservableList<TipoDeInvestimento> aGrandeListaDeTiposDeInvestimento = FXCollections.observableArrayList();
 	public ObservableList<Investidor> aGrandeListaDeInvestidores = FXCollections.observableArrayList();
 	public ObservableList<Corretora> aGrandeListaDeCorretoras = FXCollections.observableArrayList();
@@ -242,6 +244,53 @@ public class MainApp extends Application {
 			// Criando o dialogStage
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Atualiza Cotação");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			//Setando o investimento que vai ser trabalhado
+			controller.setInvestimento(i);
+			
+			//bloqueando recisase
+			dialogStage.setResizable(false);
+
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showResgatarInvestimentoOverview(InvestimentoFX i) {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/ResgatarInvestimentoOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			ResgatarInvestimentoController controller = loader.getController();
+			controller.setMainApp(this);
+			
+			//controller.setApresentacaoLabelsController(apCtrl);
+			
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Resgatar Investimento");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			dialogStage.setResizable(true);
@@ -746,8 +795,10 @@ public class MainApp extends Application {
 		this.aGrandeListaDeHistoricoDeRentabilidade.addAll(HistoricoDeRentabilidadeDAO.getTodosHistoricosDeRentabilidade(this));
 		this.aGrandeListaDeCorretoras.addAll(CorretoraDAO.getTodosCorretoraes());
 		this.aGrandeListaDeTiposDeInvestimento.addAll(TipoDeInvestimentoDAO.getTodosTipoDeInvestimentoes());
-		this.aGrandeListaDeInvestimentos.addAll(InvestimentoFXDAO.getTodosInvestimentos(this));
+		this.aGrandeListaDeInvestimentos.addAll(InvestimentoFXDAO.getTodosInvestimentosAtivos(this));
+		//this.aGrandeListaDeInvestimentosResgatados...
 		this.aGrandeListaDeMetas.addAll(MetaDAO.getTodasMetas());
+	
 		
 		//Atrinbuindo eficiencia
 		this.atribuirEficiencia();

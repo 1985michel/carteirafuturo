@@ -30,6 +30,11 @@
                   <MenuItem mnemonicParsing="false" onAction="#ShowDeletarInvestimento" text="Deletar Investimento" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Resgatar">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showResgatarInvestimento" text="Resgatar Investimento" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
       <BorderPane fx:id="areaDeTrabalho" layoutY="27.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
