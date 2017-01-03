@@ -94,7 +94,7 @@ public class DeletarInvestimentoController {
 		InvestimentoFXDAO.deletarInvestimento(i);
 		
 
-		this.mainApp.aGrandeListaDeInvestimentos.remove(i);
+		this.mainApp.aGrandeListaDeInvestimentosAtivos.remove(i);
 		
 		
 		okClicked = true;

@@ -1,9 +1,12 @@
 package com.carteirafuturo.view;
 
+import java.util.ArrayList;
+
 import com.carteirafuturo.MainApp;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
+import com.carteirafuturo.model.Meta;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.util.EstruturaData;
 import com.carteirafuturo.util.MainListsAdmin;
@@ -11,6 +14,8 @@ import com.carteirafuturo.util.MascaraFinanceira;
 import com.carteirafuturo.util.OrdenaListDeInvestimentosPorData;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
@@ -103,11 +108,12 @@ public class TelaInicialController {
 		showResumo();
 		hideMenuFiltros();
 		hideMenuLateral();
+		povoarComboBoxsDoMenuDeItens();
 	}
 
 	public void povoarTabela() {
-		OrdenaListDeInvestimentosPorData.ordenaInvestimentosPorData(this.mainApp.aGrandeListaDeInvestimentos);
-		investimentosTableView.setItems(this.mainApp.aGrandeListaDeInvestimentos);
+		OrdenaListDeInvestimentosPorData.ordenaInvestimentosPorData(this.mainApp.aGrandeListaDeInvestimentosAtivos);
+		investimentosTableView.setItems(this.mainApp.aGrandeListaDeInvestimentosAtivos);
 	}
 
 	/**
@@ -267,6 +273,34 @@ public class TelaInicialController {
 			hideMenuFiltros();
 		else
 			showMenuFiltros();
+	}
+	
+	private void povoarComboBoxsDoMenuDeItens(){
+		
+		ObservableList<Investidor> investidorList = FXCollections.observableArrayList();
+		investidorList.add(new Investidor("-1","Todos"));
+		investidorList.addAll(this.mainApp.aGrandeListaDeInvestidores);
+		this.investidorComboBox.setItems(investidorList);
+		
+		ObservableList<TipoDeInvestimento> tipoDeInvestimentoList = FXCollections.observableArrayList();
+		tipoDeInvestimentoList.add(new TipoDeInvestimento("-1","Todos"));
+		tipoDeInvestimentoList.addAll(this.mainApp.aGrandeListaDeTiposDeInvestimento);
+		this.tipoDeInvestimentoComboBox.setItems(tipoDeInvestimentoList);
+		
+		ObservableList<Corretora> CorretoraList = FXCollections.observableArrayList();
+		CorretoraList.add(new Corretora("-1","Todas"));
+		CorretoraList.addAll(this.mainApp.aGrandeListaDeCorretoras);
+		this.corretoraComboBox.setItems(CorretoraList);
+		
+		ObservableList<String> statusDeInvestimentos = FXCollections.observableArrayList();
+		String[] status = {"Todos","Ativos","Resgatados"};
+		statusDeInvestimentos.addAll(status);
+		this.statusDoInvestimentoComboBox.setItems(statusDeInvestimentos);
+		
+	}
+	
+	private void aplicarFiltro(){
+		
 	}
 
 }

@@ -64,7 +64,7 @@ public class MainListsAdmin {
 
 	public double getValorInvestidoTotal() {
 		double total = 0;
-		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentos) {
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
 			total += i.getAplicacaoInicial().getValorInvestido();
 		}
 		return total;
@@ -72,7 +72,7 @@ public class MainListsAdmin {
 
 	public double getValorAtualTotal() {
 		double atual = 0;
-		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentos) {
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
 			atual += i.getValorAtual();
 		}
 		return atual;
@@ -94,7 +94,7 @@ public class MainListsAdmin {
 	}
 	
 	public boolean temInvestimentoComAqueleTipo(TipoDeInvestimento t){
-		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentos) {
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
 			if(i.getDadosAdministrativos().getTipo().getId().equalsIgnoreCase(t.getId()))
 				return true;
 		}
@@ -102,7 +102,7 @@ public class MainListsAdmin {
 	}
 	
 	public boolean temInvestimentoComAqueleInvestidor(Investidor iv){
-		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentos) {
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
 			if(i.getDadosAdministrativos().getInvestidor().getId().equalsIgnoreCase(iv.getId()))
 				return true;
 		}
@@ -110,7 +110,7 @@ public class MainListsAdmin {
 	}
 	
 	public boolean temInvestimentoComAquelaCorretora(Corretora c){
-		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentos) {
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
 			if(i.getDadosAdministrativos().getCorretora().getId().equalsIgnoreCase(c.getId()))
 				return true;
 		}

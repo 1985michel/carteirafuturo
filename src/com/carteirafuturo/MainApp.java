@@ -48,13 +48,14 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 	
-	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentos = FXCollections.observableArrayList();
+	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentosAtivos = FXCollections.observableArrayList();
 	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentosResgatados = FXCollections.observableArrayList();
 	public ObservableList<TipoDeInvestimento> aGrandeListaDeTiposDeInvestimento = FXCollections.observableArrayList();
 	public ObservableList<Investidor> aGrandeListaDeInvestidores = FXCollections.observableArrayList();
 	public ObservableList<Corretora> aGrandeListaDeCorretoras = FXCollections.observableArrayList();
 	public ObservableList<HistoricoDeRentabilidade> aGrandeListaDeHistoricoDeRentabilidade =  FXCollections.observableArrayList();
 	public ObservableList<Meta> aGrandeListaDeMetas = FXCollections.observableArrayList();
+
 
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
@@ -795,8 +796,8 @@ public class MainApp extends Application {
 		this.aGrandeListaDeHistoricoDeRentabilidade.addAll(HistoricoDeRentabilidadeDAO.getTodosHistoricosDeRentabilidade(this));
 		this.aGrandeListaDeCorretoras.addAll(CorretoraDAO.getTodosCorretoraes());
 		this.aGrandeListaDeTiposDeInvestimento.addAll(TipoDeInvestimentoDAO.getTodosTipoDeInvestimentoes());
-		this.aGrandeListaDeInvestimentos.addAll(InvestimentoFXDAO.getTodosInvestimentosAtivos(this));
-		//this.aGrandeListaDeInvestimentosResgatados...
+		this.aGrandeListaDeInvestimentosAtivos.addAll(InvestimentoFXDAO.getTodosInvestimentosAtivos(this));
+		this.aGrandeListaDeInvestimentosResgatados.addAll(InvestimentoFXDAO.getTodosInvestimentosResgatados(this));
 		this.aGrandeListaDeMetas.addAll(MetaDAO.getTodasMetas());
 	
 		
@@ -805,7 +806,7 @@ public class MainApp extends Application {
 	}
 
 	public void atribuirEficiencia() {
-		EficienciaDeInvestimento efi = new EficienciaDeInvestimento(aGrandeListaDeInvestimentos);
+		EficienciaDeInvestimento efi = new EficienciaDeInvestimento(aGrandeListaDeInvestimentosAtivos);
 		efi.calcularEficiencia();
 		
 	}

@@ -188,6 +188,52 @@ public class InvestimentoFXDAO {
 		return lista;
 
 	}
+	
+	public static ObservableList<InvestimentoFX> getTodosInvestimentosResgatados(MainApp main) {
+
+		MainListsAdmin listsAdmin = new MainListsAdmin(main);
+		int id = 0;
+		ObservableList<InvestimentoFX> lista = FXCollections.observableArrayList();
+
+		// Gravando o cliente ao banco
+		ResultSet resultSet = null;
+		try {
+
+			CRUD crud = new CRUD();
+			resultSet = crud.getResultSet("SELECT * FROM INVESTIMENTO WHERE ISRESGATADO= true");
+
+			while (resultSet.next()) {
+				String idt = resultSet.getInt("id") + "";
+				TipoDeInvestimento tipo = listsAdmin.getTipoDeInvestimentoById(resultSet.getString("idTipo"));
+				Corretora corretora = listsAdmin.getCorretoraById(resultSet.getString("idCorretora"));
+				Investidor investidor = listsAdmin.getInvestidorById(resultSet.getString("idInvestidor"));
+				
+				String descricao = resultSet.getString("descricao");
+				double valor = new Double(resultSet.getString("valor"));
+				double rentabilidadeEsperada = new Double(resultSet.getString("rentabilidadeEsperada"));
+				String plano = resultSet.getString("plano");
+				String data = resultSet.getString("data");
+				boolean isResgatado =  resultSet.getBoolean("isResgatado");
+				
+				DadosAdministrativos dA = new DadosAdministrativos(tipo, descricao, rentabilidadeEsperada, plano, investidor, corretora,isResgatado);
+				Aplicacao aI = new Aplicacao(data, valor);
+				
+				lista.add(new InvestimentoFX(idt,aI,dA,listsAdmin.getTodosHistoricosDeRentabilidadePorInvestimentoFXId(idt)));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return lista;
+
+	}
 
 	/*
 	public static ObservableList<Investimento> getInvestimentosPorInvestidor(String idInvestidor) {

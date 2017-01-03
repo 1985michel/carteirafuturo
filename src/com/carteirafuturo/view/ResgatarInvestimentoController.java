@@ -89,6 +89,8 @@ public class ResgatarInvestimentoController {
 		//Atualizando o investimento como resgatado 
 		//Na lista
 		i.getDadosAdministrativos().setIsResgatado(true);
+		this.mainApp.aGrandeListaDeInvestimentosAtivos.remove(i);
+		this.mainApp.aGrandeListaDeInvestimentosResgatados.add(i);
 		
 		//No banco
 		InvestimentoFXDAO.atualizarInvestimento(i);
