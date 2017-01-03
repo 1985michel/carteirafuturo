@@ -18,6 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<!-- COMENTAR A LINHA ABAIXO PARA ABRIR NO SCHENE BUILDER -->
+<?import org.controlsfx.control.CheckComboBox?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carteirafuturo.view.TelaInicialController">
    <children>
       <SplitPane fx:id="baseSplitPane" dividerPositions="0.0037593984962406013, 0.5" layoutX="107.0" layoutY="102.0" pickOnBounds="false" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -185,9 +188,9 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="statusDoInvestimentoComboBox" layoutX="2.0" layoutY="47.0" prefWidth="150.0" promptText="Status do Investimento" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <ComboBox fx:id="investidorComboBox" layoutX="2.0" layoutY="84.0" prefWidth="150.0" promptText="Investidor" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <ComboBox fx:id="tipoDeInvestimentoComboBox" layoutX="2.0" layoutY="121.0" prefWidth="150.0" promptText="Tipo de Investimento" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <ComboBox fx:id="corretoraComboBox" layoutX="2.0" layoutY="158.0" prefWidth="150.0" promptText="Corretora" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="investidorComboBox" layoutX="2.0" layoutY="84.0" prefWidth="150.0"  AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="tipoDeInvestimentoComboBox" layoutX="2.0" layoutY="121.0" prefWidth="150.0"  AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="corretoraComboBox" layoutX="2.0" layoutY="158.0" prefWidth="150.0"  AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
                   <CheckBox fx:id="marcarMelhorEPiorEficienciaCheckBox" layoutX="2.0" layoutY="195.0" mnemonicParsing="false" text="Marcar Melhor e Pior Eficiência" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
                   <Button defaultButton="true" layoutX="69.0" layoutY="286.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Aplicar Filtro" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
                </children>

@@ -1,12 +1,11 @@
 package com.carteirafuturo.view;
 
-import java.util.ArrayList;
+import org.controlsfx.control.CheckComboBox;
 
 import com.carteirafuturo.MainApp;
 import com.carteirafuturo.model.Corretora;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
-import com.carteirafuturo.model.Meta;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.util.EstruturaData;
 import com.carteirafuturo.util.MainListsAdmin;
@@ -17,12 +16,10 @@ import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.SplitPane.Divider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -87,6 +84,16 @@ public class TelaInicialController {
 	private ComboBox<String> statusDoInvestimentoComboBox;
 
 	@FXML
+	private CheckComboBox<Investidor> investidorComboBox;
+	
+	@FXML
+	private CheckComboBox<TipoDeInvestimento> tipoDeInvestimentoComboBox;
+
+	@FXML
+	private CheckComboBox<Corretora> corretoraComboBox;
+	
+	/*
+	@FXML
 	private ComboBox<Investidor> investidorComboBox;
 
 	@FXML
@@ -94,7 +101,7 @@ public class TelaInicialController {
 
 	@FXML
 	private ComboBox<Corretora> corretoraComboBox;
-
+	*/
 	@FXML
 	private CheckBox marcarMelhorEPiorEficienciaCheckBox;
 
@@ -280,17 +287,26 @@ public class TelaInicialController {
 		ObservableList<Investidor> investidorList = FXCollections.observableArrayList();
 		investidorList.add(new Investidor("-1","Todos"));
 		investidorList.addAll(this.mainApp.aGrandeListaDeInvestidores);
-		this.investidorComboBox.setItems(investidorList);
+		//this.investidorComboBox.setItems(investidorList);
+		
+		
+		//this.investidorComboBox = new CheckComboBox<Investidor>(investidorList);
+		this.investidorComboBox.getItems().addAll(investidorList);
+
 		
 		ObservableList<TipoDeInvestimento> tipoDeInvestimentoList = FXCollections.observableArrayList();
 		tipoDeInvestimentoList.add(new TipoDeInvestimento("-1","Todos"));
 		tipoDeInvestimentoList.addAll(this.mainApp.aGrandeListaDeTiposDeInvestimento);
-		this.tipoDeInvestimentoComboBox.setItems(tipoDeInvestimentoList);
+		//this.tipoDeInvestimentoComboBox.setItems(tipoDeInvestimentoList);
+		this.tipoDeInvestimentoComboBox.getItems().addAll(tipoDeInvestimentoList);
+
 		
 		ObservableList<Corretora> CorretoraList = FXCollections.observableArrayList();
 		CorretoraList.add(new Corretora("-1","Todas"));
 		CorretoraList.addAll(this.mainApp.aGrandeListaDeCorretoras);
-		this.corretoraComboBox.setItems(CorretoraList);
+		//this.corretoraComboBox.setItems(CorretoraList);
+		this.corretoraComboBox.getItems().addAll(CorretoraList);
+
 		
 		ObservableList<String> statusDeInvestimentos = FXCollections.observableArrayList();
 		String[] status = {"Todos","Ativos","Resgatados"};
@@ -299,8 +315,9 @@ public class TelaInicialController {
 		
 	}
 	
-	private void aplicarFiltro(){
+	private void aplicarFiltros(){
 		
+		//checkComboBox.getCheckModel().getSelectedItems()
 	}
 
 }
