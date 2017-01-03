@@ -1,7 +1,10 @@
 package com.carteirafuturo.view;
 
 import com.carteirafuturo.MainApp;
+import com.carteirafuturo.model.Corretora;
+import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
+import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.util.EstruturaData;
 import com.carteirafuturo.util.MainListsAdmin;
 import com.carteirafuturo.util.MascaraFinanceira;
@@ -10,6 +13,8 @@ import com.carteirafuturo.util.OrdenaListDeInvestimentosPorData;
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.SplitPane.Divider;
@@ -27,6 +32,7 @@ public class TelaInicialController {
 	MainListsAdmin mainList;
 
 	boolean isMenuOpen = false;
+	boolean isMenuFiltrosOpen = false;
 
 	@FXML
 	private SplitPane baseSplitPane;
@@ -69,6 +75,24 @@ public class TelaInicialController {
 	@FXML
 	private Label acompanhamentoMetaLabel;
 
+	@FXML
+	private AnchorPane menuFiltrosDeSelecaoAnchorPane;
+
+	@FXML
+	private ComboBox<String> statusDoInvestimentoComboBox;
+
+	@FXML
+	private ComboBox<Investidor> investidorComboBox;
+
+	@FXML
+	private ComboBox<TipoDeInvestimento> tipoDeInvestimentoComboBox;
+
+	@FXML
+	private ComboBox<Corretora> corretoraComboBox;
+
+	@FXML
+	private CheckBox marcarMelhorEPiorEficienciaCheckBox;
+
 	/**
 	 * Ligando ao main
 	 */
@@ -77,6 +101,8 @@ public class TelaInicialController {
 		this.mainList = new MainListsAdmin(main);
 		povoarTabela();
 		showResumo();
+		hideMenuFiltros();
+		hideMenuLateral();
 	}
 
 	public void povoarTabela() {
@@ -190,6 +216,7 @@ public class TelaInicialController {
 		dt.play();
 		isMenuOpen = false;
 
+
 	}
 
 	private void showMenuLateral() {
@@ -201,6 +228,7 @@ public class TelaInicialController {
 		dt.setToValue(.2);
 		dt.play();
 		isMenuOpen = true;
+		
 	}
 
 	@FXML
@@ -209,7 +237,36 @@ public class TelaInicialController {
 			hideMenuLateral();
 		else
 			showMenuLateral();
+	}
+	
+	
+	private void hideMenuFiltros() {
 
+		DoubleProperty dDrop = this.baseSplitPane.getDividers().get(1).positionProperty();
+		DoubleTransition dt = new DoubleTransition(Duration.millis(800), dDrop);
+		dt.setToValue(1.0);
+		dt.play();
+		
+		isMenuFiltrosOpen = false;
+
+	}
+
+	private void showMenuFiltros() {
+
+		DoubleProperty dDrop = this.baseSplitPane.getDividers().get(1).positionProperty();
+		DoubleTransition dt = new DoubleTransition(Duration.millis(800), dDrop);
+		dt.setToValue(.5);
+		dt.play();
+		
+		isMenuFiltrosOpen = true;
+	}
+	
+	@FXML
+	public void animaMenuFiltrosDeExibicao() {
+		if (isMenuFiltrosOpen)
+			hideMenuFiltros();
+		else
+			showMenuFiltros();
 	}
 
 }
