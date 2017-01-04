@@ -48,6 +48,7 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 	
+	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentos = FXCollections.observableArrayList();
 	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentosAtivos = FXCollections.observableArrayList();
 	public ObservableList<InvestimentoFX> aGrandeListaDeInvestimentosResgatados = FXCollections.observableArrayList();
 	public ObservableList<TipoDeInvestimento> aGrandeListaDeTiposDeInvestimento = FXCollections.observableArrayList();
@@ -798,6 +799,8 @@ public class MainApp extends Application {
 		this.aGrandeListaDeTiposDeInvestimento.addAll(TipoDeInvestimentoDAO.getTodosTipoDeInvestimentoes());
 		this.aGrandeListaDeInvestimentosAtivos.addAll(InvestimentoFXDAO.getTodosInvestimentosAtivos(this));
 		this.aGrandeListaDeInvestimentosResgatados.addAll(InvestimentoFXDAO.getTodosInvestimentosResgatados(this));
+		this.aGrandeListaDeInvestimentos.addAll(this.aGrandeListaDeInvestimentosAtivos);
+		this.aGrandeListaDeInvestimentos.addAll(this.aGrandeListaDeInvestimentosResgatados);
 		this.aGrandeListaDeMetas.addAll(MetaDAO.getTodasMetas());
 	
 		

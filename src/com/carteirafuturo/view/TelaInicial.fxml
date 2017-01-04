@@ -188,13 +188,14 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="statusDoInvestimentoComboBox" layoutX="2.0" layoutY="47.0" prefWidth="150.0" promptText="Status do Investimento" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <CheckComboBox fx:id="investidorComboBox" layoutX="2.0" layoutY="84.0" prefWidth="150.0"  AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <CheckComboBox fx:id="tipoDeInvestimentoComboBox" layoutX="2.0" layoutY="121.0" prefWidth="150.0"  AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <CheckComboBox fx:id="corretoraComboBox" layoutX="2.0" layoutY="158.0" prefWidth="150.0"  AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="investidorComboBox" layoutX="2.0" layoutY="84.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="tipoDeInvestimentoComboBox" layoutX="2.0" layoutY="121.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="corretoraComboBox" layoutX="2.0" layoutY="158.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
                   <CheckBox fx:id="marcarMelhorEPiorEficienciaCheckBox" layoutX="2.0" layoutY="195.0" mnemonicParsing="false" text="Marcar Melhor e Pior Eficiência" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <Button defaultButton="true" layoutX="69.0" layoutY="286.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Aplicar Filtro" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <Button defaultButton="true" layoutX="69.0" layoutY="286.0" mnemonicParsing="false" onAction="#aplicarFiltros" prefHeight="39.0" prefWidth="216.0" text="Aplicar Filtro" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
                </children>
             </AnchorPane>
+            <!-- CheckComboBox -->
         </items>
       </SplitPane>
    </children>
