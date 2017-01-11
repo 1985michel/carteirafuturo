@@ -17,7 +17,7 @@ public class TipoDeInvestimentoDAO {
 
 			CRUD crud = new CRUD();
 			resultSet = crud
-					.getResultSet("INSERT INTO TipoDeInvestimento (nome) VALUES ('" + u.getNome() + "');CALL IDENTITY();");
+					.getResultSet("INSERT INTO TipoDeInvestimento (nome,prazo) VALUES ('" + u.getNome() + "','" + u.getPrazo() + "');CALL IDENTITY();");
 
 			if (resultSet.next()) {
 				id = resultSet.getInt(1);// obtendo o idretornado CALL
@@ -51,7 +51,7 @@ public class TipoDeInvestimentoDAO {
 
 			while (resultSet.next()) {
 				String idt = resultSet.getInt("id") + "";
-				lista.add(new TipoDeInvestimento(idt, resultSet.getString("nome")));
+				lista.add(new TipoDeInvestimento(idt, resultSet.getString("nome"),resultSet.getString("prazo")));
 			}
 
 		} catch (Exception e) {
@@ -75,7 +75,7 @@ public class TipoDeInvestimentoDAO {
 			CRUD crud = new CRUD();
 
 			resultSet = crud
-					.getResultSet("UPDATE TipoDeInvestimento SET nome= '" + u.getNome() + "' WHERE id='" + u.getId() + "'");
+					.getResultSet("UPDATE TipoDeInvestimento SET nome= '" + u.getNome() + "',prazo= '" + u.getPrazo() + "' WHERE id='" + u.getId() + "'");
 
 		} catch (Exception e) {
 			e.printStackTrace();

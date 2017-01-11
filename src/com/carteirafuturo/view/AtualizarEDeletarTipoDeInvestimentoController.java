@@ -8,6 +8,7 @@ import com.carteirafuturo.util.MainListsAdmin;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
@@ -22,6 +23,8 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 	TipoDeInvestimento t;
 
 	MainApp mainApp;
+	
+	String prazoSelecionado = "";
 
 	// Palco desse dialog
 	private Stage dialogStage;
@@ -34,6 +37,9 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 
 	@FXML
 	private TextField nomeTextField;
+	
+	@FXML
+	private ComboBox<String> prazoComboBox;
 
 	@FXML
 	private Button deletarButton;
@@ -58,6 +64,9 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 	 */
 	@FXML
 	private void initialize() {
+		prazoComboBox.setOnAction((event) -> {
+			prazoSelecionado = prazoComboBox.getValue();
+		});
 	}
 
 	/**
@@ -72,6 +81,7 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 	public void povoarFormulario() {
 		this.idTipoDeInvestimentoLabel.setText(t.getId());
 		this.nomeTextField.setText(t.getNome());
+		this.prazoComboBox.setValue(t.getPrazo());
 
 		// Se houver algum investimento com o tipo escolhido o botão de deleção
 		// será desabilitado e um tooltipo será apresentado
@@ -96,11 +106,13 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 	@FXML
 	private void handleOk() {
 		String nome = nomeTextField.getText();
+		
 
 		okClicked = true;
 
 		// Atualizando
 		t.setNome(nome);
+		t.setPrazo(prazoSelecionado);
 
 		// Atualizando no banco
 		TipoDeInvestimentoDAO.atualizarTipoDeInvestimento(t);
@@ -127,6 +139,10 @@ public class AtualizarEDeletarTipoDeInvestimentoController {
 		this.mainApp.aGrandeListaDeTiposDeInvestimento.remove(t);
 
 		dialogStage.close();
+	}
+	
+	public void povoarComboBoxs() {
+		prazoComboBox.getItems().addAll(TipoDeInvestimento.prazosObservable);
 	}
 
 }

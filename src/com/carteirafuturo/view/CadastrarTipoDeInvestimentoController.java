@@ -4,7 +4,10 @@ import com.carteirafuturo.MainApp;
 import com.carteirafuturo.crud.TipoDeInvestimentoDAO;
 import com.carteirafuturo.model.TipoDeInvestimento;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -15,6 +18,8 @@ public class CadastrarTipoDeInvestimentoController {
 
 	MainApp mainApp;
 
+	String prazoSelecionado = "";
+
 	// Palco desse dialog
 	private Stage dialogStage;
 
@@ -23,6 +28,10 @@ public class CadastrarTipoDeInvestimentoController {
 
 	@FXML
 	private TextField nomeTextField;
+
+	@FXML
+	private ComboBox<String> prazoComboBox;
+
 	@FXML
 	private TableView<TipoDeInvestimento> tipoDeInvestimentoTableView;
 
@@ -31,6 +40,9 @@ public class CadastrarTipoDeInvestimentoController {
 
 	@FXML
 	private TableColumn<TipoDeInvestimento, String> nomeTableColumn;
+
+	@FXML
+	private TableColumn<TipoDeInvestimento, String> prazoTableColumn;
 
 	/**
 	 * Ligando ao main
@@ -45,9 +57,16 @@ public class CadastrarTipoDeInvestimentoController {
 	 */
 	@FXML
 	private void initialize() {
+
+		prazoComboBox.setOnAction((event) -> {
+			prazoSelecionado = prazoComboBox.getValue();
+		});
+
 		centralizaTableColumn(idTableColumn);
 		idTableColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
 		nomeTableColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+		prazoTableColumn.setCellValueFactory(cellData -> cellData.getValue().prazoProperty());
+		prazoTableColumn.setStyle("-fx-alignment: CENTER;");
 
 		// Detecta o duplo click do mouse e apresenta detalhamento
 		tipoDeInvestimentoTableView.setOnMousePressed((event) -> {
@@ -98,7 +117,13 @@ public class CadastrarTipoDeInvestimentoController {
 		okClicked = true;
 
 		// Criando o nome tipo
-		TipoDeInvestimento tipo = new TipoDeInvestimento(nome);
+		int prazoInt = 0;
+		for (int i = 0; i < TipoDeInvestimento.prazosObservable.size(); i++) {
+			if (TipoDeInvestimento.prazosObservable.get(i).equalsIgnoreCase(prazoSelecionado))
+				prazoInt = i;
+		}
+
+		TipoDeInvestimento tipo = new TipoDeInvestimento(nome, prazoInt);
 		TipoDeInvestimentoDAO.registrarTipoDeInvestimento(tipo);
 		this.mainApp.aGrandeListaDeTiposDeInvestimento.add(tipo);
 
@@ -118,6 +143,10 @@ public class CadastrarTipoDeInvestimentoController {
 
 	private void centralizaTableColumn(TableColumn tc) {
 		tc.setStyle("-fx-alignment: CENTER;");
+	}
+
+	public void povoarComboBoxs() {
+		prazoComboBox.getItems().addAll(TipoDeInvestimento.prazosObservable);
 	}
 
 }

@@ -333,6 +333,7 @@ public class MainApp extends Application {
 			// Dá ao controlador acesso ao MainApp
 			CadastrarTipoDeInvestimentoController controller = loader.getController();
 			controller.setMainApp(this);
+			controller.povoarComboBoxs();
 						
 
 			// Criando o dialogStage
@@ -376,6 +377,7 @@ public class MainApp extends Application {
 			AtualizarEDeletarTipoDeInvestimentoController controller = loader.getController();
 			controller.setMainApp(this);
 			controller.setTipoDeInvestimento(t);
+			controller.povoarComboBoxs();
 			controller.povoarFormulario();
 						
 
