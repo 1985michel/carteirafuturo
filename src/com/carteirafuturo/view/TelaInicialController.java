@@ -4,6 +4,7 @@ import org.controlsfx.control.CheckComboBox;
 
 import com.carteirafuturo.MainApp;
 import com.carteirafuturo.model.Corretora;
+import com.carteirafuturo.model.DadosAdministrativos;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
@@ -216,7 +217,6 @@ public class TelaInicialController {
 		lucroLabel.setText(MascaraFinanceira.formataMoeda(mainList.getLucroTotal()));
 		lucroPercentualLabel.setText("% " + mainList.getLucroPercentualString());
 
-
 		reservaDeEmergenciaLabel.setText(MascaraFinanceira.formataMoeda(mainList.getReservaDeEmergenciaTotal()));
 
 		curtoPrazoLabel.setText(MascaraFinanceira.formataMoeda(mainList.getCurtoPrazoTotal()));
@@ -322,11 +322,13 @@ public class TelaInicialController {
 		this.corretoraComboBox.getItems().addAll(CorretoraList);
 		this.corretoraComboBox.getCheckModel().check(0);
 
-		ObservableList<String> statusDeInvestimentos = FXCollections.observableArrayList();
-		String[] status = { "Todos os Status", "Ativos", "Resgatados" };
-		statusDeInvestimentos.addAll(status);
-		this.statusDoInvestimentoComboBox.setItems(statusDeInvestimentos);		
-		
+		// ObservableList<String> statusDeInvestimentos =
+		// FXCollections.observableArrayList();
+		// String[] status = { "Todos os Status", "Ativos", "Resgatados" };
+		// statusDeInvestimentos.addAll(status);
+		this.statusDoInvestimentoComboBox.setItems(DadosAdministrativos.statusDeInvestimentos);
+		this.statusDoInvestimentoComboBox.setValue(DadosAdministrativos.statusDeInvestimentos.get(0));
+
 		ObservableList<String> prazosOb = FXCollections.observableArrayList();
 		prazosOb.add("Todos os Prazos");
 		prazosOb.addAll(TipoDeInvestimento.prazosObservable);
@@ -338,12 +340,18 @@ public class TelaInicialController {
 	@FXML
 	private void aplicarFiltros() {
 		// checkComboBox.getCheckModel().getSelectedItems()
+
 		ObservableList<TipoDeInvestimento> tipos = tipoDeInvestimentoComboBox.getCheckModel().getCheckedItems();
 		ObservableList<Investidor> investidores = investidorComboBox.getCheckModel().getCheckedItems();
 		ObservableList<Corretora> corretoras = corretoraComboBox.getCheckModel().getCheckedItems();
 		ObservableList<String> prazos = prazoComboBox.getCheckModel().getCheckedItems();
-		
-		investimentosTableView.setItems(this.filtrosManager.filtrar(tipos,prazos, corretoras, investidores));
+
+		String status = this.statusDoInvestimentoComboBox.getValue();
+
+		ObservableList<InvestimentoFX> listaFiltrada = this.filtrosManager.filtrar(status, tipos, prazos, corretoras,
+				investidores);
+		OrdenaListDeInvestimentosPorData.ordenaInvestimentosPorData(listaFiltrada);
+		investimentosTableView.setItems(listaFiltrada);
 	}
 
 }

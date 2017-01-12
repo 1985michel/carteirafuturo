@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Classe responsável pelo registro, gestão e exibição dos dados administrativos
@@ -16,6 +18,14 @@ import javafx.beans.property.StringProperty;
  */
 
 public class DadosAdministrativos {
+	
+
+	public static ObservableList<String> statusDeInvestimentos = FXCollections.observableArrayList();
+	static String[] status = { "Todos os Status", "Ativos", "Resgatados" };
+	
+	static{
+		statusDeInvestimentos.addAll(status);		
+	}
 
 	// Dados Administrativos Básicos
 	TipoDeInvestimento tipo;

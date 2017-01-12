@@ -2,6 +2,7 @@ package com.carteirafuturo.util;
 
 import com.carteirafuturo.MainApp;
 import com.carteirafuturo.model.Corretora;
+import com.carteirafuturo.model.DadosAdministrativos;
 import com.carteirafuturo.model.Investidor;
 import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TipoDeInvestimento;
@@ -22,12 +23,26 @@ public class FiltrosManager {
 	private void povoarListaComTodosInvestimentos() {
 		this.listaFiltrada = this.mainApp.aGrandeListaDeInvestimentos;
 	}
+	
+	private void povoarListaComTodosInvestimentosAtivos() {
+		this.listaFiltrada = this.mainApp.aGrandeListaDeInvestimentosAtivos;
+	}
+	
+	private void povoarListaComTodosInvestimentosResgatados() {
+		this.listaFiltrada = this.mainApp.aGrandeListaDeInvestimentosResgatados;
+	}
 
-	public ObservableList<InvestimentoFX> filtrar(ObservableList<TipoDeInvestimento> tipos,
+	public ObservableList<InvestimentoFX> filtrar(String status,ObservableList<TipoDeInvestimento> tipos,
 			ObservableList<String> prazos, ObservableList<Corretora> corretoras,
 			ObservableList<Investidor> investidores) {
 
-		povoarListaComTodosInvestimentos();
+		if(status.equalsIgnoreCase(DadosAdministrativos.statusDeInvestimentos.get(0)))
+			povoarListaComTodosInvestimentos();
+		else if(status.equalsIgnoreCase(DadosAdministrativos.statusDeInvestimentos.get(1)))
+			povoarListaComTodosInvestimentosAtivos();
+		else if(status.equalsIgnoreCase(DadosAdministrativos.statusDeInvestimentos.get(2)))
+			povoarListaComTodosInvestimentosResgatados();
+		
 		this.listaFiltrada = filtrarPorTipoDeInvestimento(tipos);
 		this.listaFiltrada = filtrarPorInvestidor(investidores);
 		this.listaFiltrada = filtrarPorCorretora(corretoras);
