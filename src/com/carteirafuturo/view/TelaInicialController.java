@@ -33,7 +33,7 @@ public class TelaInicialController {
 	MainApp mainApp;
 
 	MainListsAdmin mainList;
-	
+
 	FiltrosManager filtrosManager;
 
 	boolean isMenuOpen = false;
@@ -72,13 +72,16 @@ public class TelaInicialController {
 	private Label lucroPercentualLabel;
 
 	@FXML
-	private Label dataMetaLabel;
+	private Label reservaDeEmergenciaLabel;
 
 	@FXML
-	private Label valorMetaLabel;
+	private Label curtoPrazoLabel;
 
 	@FXML
-	private Label acompanhamentoMetaLabel;
+	private Label medioPrazoLabel;
+
+	@FXML
+	private Label longoPrazoLabel;
 
 	@FXML
 	private AnchorPane menuFiltrosDeSelecaoAnchorPane;
@@ -88,23 +91,23 @@ public class TelaInicialController {
 
 	@FXML
 	private CheckComboBox<Investidor> investidorComboBox;
-	
+
 	@FXML
 	private CheckComboBox<TipoDeInvestimento> tipoDeInvestimentoComboBox;
 
 	@FXML
 	private CheckComboBox<Corretora> corretoraComboBox;
-	
+
+	@FXML
+	private CheckComboBox<String> prazoComboBox;
+
 	/*
-	@FXML
-	private ComboBox<Investidor> investidorComboBox;
-
-	@FXML
-	private ComboBox<TipoDeInvestimento> tipoDeInvestimentoComboBox;
-
-	@FXML
-	private ComboBox<Corretora> corretoraComboBox;
-	*/
+	 * @FXML private ComboBox<Investidor> investidorComboBox;
+	 * 
+	 * @FXML private ComboBox<TipoDeInvestimento> tipoDeInvestimentoComboBox;
+	 * 
+	 * @FXML private ComboBox<Corretora> corretoraComboBox;
+	 */
 	@FXML
 	private CheckBox marcarMelhorEPiorEficienciaCheckBox;
 
@@ -212,9 +215,15 @@ public class TelaInicialController {
 		investidosLabel.setText(MascaraFinanceira.formataMoeda(mainList.getValorInvestidoTotal()));
 		lucroLabel.setText(MascaraFinanceira.formataMoeda(mainList.getLucroTotal()));
 		lucroPercentualLabel.setText("% " + mainList.getLucroPercentualString());
-		// dataMetaLabel
-		// valorMetaLabel
-		// acompanhamentoMetaLabel
+
+
+		reservaDeEmergenciaLabel.setText(MascaraFinanceira.formataMoeda(mainList.getReservaDeEmergenciaTotal()));
+
+		curtoPrazoLabel.setText(MascaraFinanceira.formataMoeda(mainList.getCurtoPrazoTotal()));
+
+		medioPrazoLabel.setText(MascaraFinanceira.formataMoeda(mainList.getMedioPrazoTotal()));
+
+		longoPrazoLabel.setText(MascaraFinanceira.formataMoeda(mainList.getLongoPrazoTotal()));
 
 	}
 
@@ -233,7 +242,6 @@ public class TelaInicialController {
 		dt.play();
 		isMenuOpen = false;
 
-
 	}
 
 	private void showMenuLateral() {
@@ -245,7 +253,7 @@ public class TelaInicialController {
 		dt.setToValue(.2);
 		dt.play();
 		isMenuOpen = true;
-		
+
 	}
 
 	@FXML
@@ -255,15 +263,14 @@ public class TelaInicialController {
 		else
 			showMenuLateral();
 	}
-	
-	
+
 	private void hideMenuFiltros() {
 
 		DoubleProperty dDrop = this.baseSplitPane.getDividers().get(1).positionProperty();
 		DoubleTransition dt = new DoubleTransition(Duration.millis(800), dDrop);
 		dt.setToValue(1.0);
 		dt.play();
-		
+
 		isMenuFiltrosOpen = false;
 
 	}
@@ -274,10 +281,10 @@ public class TelaInicialController {
 		DoubleTransition dt = new DoubleTransition(Duration.millis(800), dDrop);
 		dt.setToValue(.5);
 		dt.play();
-		
+
 		isMenuFiltrosOpen = true;
 	}
-	
+
 	@FXML
 	public void animaMenuFiltrosDeExibicao() {
 		if (isMenuFiltrosOpen)
@@ -285,51 +292,58 @@ public class TelaInicialController {
 		else
 			showMenuFiltros();
 	}
-	
-	private void povoarComboBoxsDoMenuDeItens(){
-		
+
+	private void povoarComboBoxsDoMenuDeItens() {
+
 		ObservableList<Investidor> investidorList = FXCollections.observableArrayList();
-		Investidor investidorPadrao = new Investidor("-1","Todos os Investidores");
+		Investidor investidorPadrao = new Investidor("-1", "Todos os Investidores");
 		investidorList.add(investidorPadrao);
 		investidorList.addAll(this.mainApp.aGrandeListaDeInvestidores);
-		//this.investidorComboBox.setItems(investidorList);
-		
-		
-		//this.investidorComboBox = new CheckComboBox<Investidor>(investidorList);
-		//povoando o checked combobox
+		// this.investidorComboBox.setItems(investidorList);
+
+		// this.investidorComboBox = new
+		// CheckComboBox<Investidor>(investidorList);
+		// povoando o checked combobox
 		this.investidorComboBox.getItems().addAll(investidorList);
-		//deixando o primeiro pré selecionado
+		// deixando o primeiro pré selecionado
 		this.investidorComboBox.getCheckModel().check(0);
 
-		
 		ObservableList<TipoDeInvestimento> tipoDeInvestimentoList = FXCollections.observableArrayList();
-		tipoDeInvestimentoList.add(new TipoDeInvestimento("-1","Todos os Tipos"));
+		tipoDeInvestimentoList.add(new TipoDeInvestimento("-1", "Todos os Tipos"));
 		tipoDeInvestimentoList.addAll(this.mainApp.aGrandeListaDeTiposDeInvestimento);
-		//this.tipoDeInvestimentoComboBox.setItems(tipoDeInvestimentoList);
+		// this.tipoDeInvestimentoComboBox.setItems(tipoDeInvestimentoList);
 		this.tipoDeInvestimentoComboBox.getItems().addAll(tipoDeInvestimentoList);
 		this.tipoDeInvestimentoComboBox.getCheckModel().check(0);
-		
+
 		ObservableList<Corretora> CorretoraList = FXCollections.observableArrayList();
-		CorretoraList.add(new Corretora("-1","Todas Corretoras"));
+		CorretoraList.add(new Corretora("-1", "Todas Corretoras"));
 		CorretoraList.addAll(this.mainApp.aGrandeListaDeCorretoras);
-		//this.corretoraComboBox.setItems(CorretoraList);
+		// this.corretoraComboBox.setItems(CorretoraList);
 		this.corretoraComboBox.getItems().addAll(CorretoraList);
 		this.corretoraComboBox.getCheckModel().check(0);
-		
+
 		ObservableList<String> statusDeInvestimentos = FXCollections.observableArrayList();
-		String[] status = {"Todos os Status","Ativos","Resgatados"};
+		String[] status = { "Todos os Status", "Ativos", "Resgatados" };
 		statusDeInvestimentos.addAll(status);
-		this.statusDoInvestimentoComboBox.setItems(statusDeInvestimentos);
+		this.statusDoInvestimentoComboBox.setItems(statusDeInvestimentos);		
 		
+		ObservableList<String> prazosOb = FXCollections.observableArrayList();
+		prazosOb.add("Todos os Prazos");
+		prazosOb.addAll(TipoDeInvestimento.prazosObservable);
+		this.prazoComboBox.getItems().addAll(prazosOb);
+		this.prazoComboBox.getCheckModel().check(0);
+
 	}
-	
+
 	@FXML
-	private void aplicarFiltros(){		
-		//checkComboBox.getCheckModel().getSelectedItems()
+	private void aplicarFiltros() {
+		// checkComboBox.getCheckModel().getSelectedItems()
 		ObservableList<TipoDeInvestimento> tipos = tipoDeInvestimentoComboBox.getCheckModel().getCheckedItems();
 		ObservableList<Investidor> investidores = investidorComboBox.getCheckModel().getCheckedItems();
 		ObservableList<Corretora> corretoras = corretoraComboBox.getCheckModel().getCheckedItems();
-		investimentosTableView.setItems(this.filtrosManager.filtrar(tipos, corretoras, investidores));
+		ObservableList<String> prazos = prazoComboBox.getCheckModel().getCheckedItems();
+		
+		investimentosTableView.setItems(this.filtrosManager.filtrar(tipos,prazos, corretoras, investidores));
 	}
 
 }

@@ -117,4 +117,42 @@ public class MainListsAdmin {
 		return false;
 	}
 
+	public double getReservaDeEmergenciaTotal() {
+		double atual = 0;
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
+			if(i.getDadosAdministrativos().getTipo().getPrazo().equalsIgnoreCase(TipoDeInvestimento.prazosObservable.get(0)))
+				atual+=i.getValorAtual();
+		}
+		return atual;
+	}
+
+	public double getCurtoPrazoTotal() {
+		double atual = 0;
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
+			if(i.getDadosAdministrativos().getTipo().getPrazo().equalsIgnoreCase(TipoDeInvestimento.prazosObservable.get(1)))
+				atual+=i.getValorAtual();
+		}
+		return atual;
+	}
+
+	public double getMedioPrazoTotal() {
+		double atual = 0;
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
+			if(i.getDadosAdministrativos().getTipo().getPrazo().equalsIgnoreCase(TipoDeInvestimento.prazosObservable.get(2)))
+				atual+=i.getValorAtual();
+		}
+		return atual;
+	}
+
+	public double getLongoPrazoTotal() {
+		double atual = 0;
+		for (InvestimentoFX i : this.main.aGrandeListaDeInvestimentosAtivos) {
+			if(i.getDadosAdministrativos().getTipo().getPrazo().equalsIgnoreCase(TipoDeInvestimento.prazosObservable.get(3)))
+				atual+=i.getValorAtual();
+		}
+		return atual;
+	}
+	
+	
+
 }

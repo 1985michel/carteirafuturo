@@ -23,12 +23,15 @@ public class FiltrosManager {
 		this.listaFiltrada = this.mainApp.aGrandeListaDeInvestimentos;
 	}
 
-	public ObservableList<InvestimentoFX> filtrar(ObservableList<TipoDeInvestimento> tipos, ObservableList<Corretora> corretoras,
+	public ObservableList<InvestimentoFX> filtrar(ObservableList<TipoDeInvestimento> tipos,
+			ObservableList<String> prazos, ObservableList<Corretora> corretoras,
 			ObservableList<Investidor> investidores) {
+
 		povoarListaComTodosInvestimentos();
 		this.listaFiltrada = filtrarPorTipoDeInvestimento(tipos);
 		this.listaFiltrada = filtrarPorInvestidor(investidores);
-		this.listaFiltrada = filtrarPorCorretora(corretoras);		
+		this.listaFiltrada = filtrarPorCorretora(corretoras);
+		this.listaFiltrada = filtrarPorPrazo(prazos);
 		return listaFiltrada;
 	}
 
@@ -40,7 +43,6 @@ public class FiltrosManager {
 			if (t.getId().equalsIgnoreCase("-1"))
 				return listaFiltrada;
 		}
-	
 
 		// se não for todos
 		ObservableList<InvestimentoFX> listaInterna = FXCollections.observableArrayList();
@@ -54,7 +56,28 @@ public class FiltrosManager {
 		}
 		return listaInterna;
 	}
-	
+
+	private ObservableList<InvestimentoFX> filtrarPorPrazo(ObservableList<String> prazos) {
+
+		// se for todos, devolva a propría lista
+		for (String p : prazos) {
+			if (p.equalsIgnoreCase("Todos os Prazos"))
+				return listaFiltrada;
+		}
+
+		// se não for todos
+		ObservableList<InvestimentoFX> listaInterna = FXCollections.observableArrayList();
+
+		for (InvestimentoFX i : listaFiltrada) {
+			for (String p : prazos) {
+				if (i.getDadosAdministrativos().getTipo().getPrazo().equalsIgnoreCase(p))
+					if (!listaInterna.contains(i))
+						listaInterna.add(i);
+			}
+		}
+		return listaInterna;
+	}
+
 	private ObservableList<InvestimentoFX> filtrarPorInvestidor(ObservableList<Investidor> investidores) {
 
 		// se for todos, devolva a propría lista
@@ -63,7 +86,6 @@ public class FiltrosManager {
 			if (iv.getId().equalsIgnoreCase("-1"))
 				return listaFiltrada;
 		}
-		
 
 		// se não for todos
 		ObservableList<InvestimentoFX> listaInterna = FXCollections.observableArrayList();
@@ -77,7 +99,7 @@ public class FiltrosManager {
 		}
 		return listaInterna;
 	}
-	
+
 	private ObservableList<InvestimentoFX> filtrarPorCorretora(ObservableList<Corretora> corretoras) {
 
 		// se for todos, devolva a propría lista
@@ -86,7 +108,6 @@ public class FiltrosManager {
 			if (c.getId().equalsIgnoreCase("-1"))
 				return listaFiltrada;
 		}
-		
 
 		// se não for todos
 		ObservableList<InvestimentoFX> listaInterna = FXCollections.observableArrayList();

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -18,8 +19,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<!-- COMENTAR A LINHA ABAIXO PARA ABRIR NO SCHENE BUILDER -->
-<?import org.controlsfx.control.CheckComboBox?>
+<!-- COMENTAR A LINHA ABAIXO PARA ABRIR NO SCHENE BUILDER-->
+<?import org.controlsfx.control.CheckComboBox?> 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carteirafuturo.view.TelaInicialController">
    <children>
@@ -53,69 +54,98 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <VBox layoutX="9.600000381469727" layoutY="14.0" spacing="5.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
-                                       <children>
-                                          <Label text="Total:">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="totalLabel" alignment="TOP_LEFT" contentDisplay="CENTER" text="totalLabel">
-                                             <VBox.margin>
-                                                <Insets left="30.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Label text="Investidos:">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="investidosLabel" text="investidosLabel">
-                                             <VBox.margin>
-                                                <Insets left="30.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Label text="Lucro:">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="lucroLabel" text="lucroLabel">
-                                             <VBox.margin>
-                                                <Insets left="30.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Label fx:id="lucroPercentualLabel" layoutX="40.0" layoutY="159.0" text="lucroPercentualLabel">
-                                             <VBox.margin>
-                                                <Insets left="30.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Label text="Meta:">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
+                                    <ScrollPane layoutX="9.600000381469727" layoutY="11.600000381469727" pannable="true" style="-fx-border-color: WHITE; -fx-border-width: 2;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="-5.0">
+                                       <content>
                                           <VBox spacing="5.0">
                                              <children>
-                                                <Label fx:id="dataMetaLabel" text="dataMetaLabel">
+                                                <Label text="Total:">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="totalLabel" alignment="TOP_LEFT" contentDisplay="CENTER" text="totalLabel">
                                                    <VBox.margin>
                                                       <Insets left="30.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="valorMetaLabel" text="valorMetaLabel">
+                                                <Label text="Investidos:">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="investidosLabel" text="investidosLabel">
                                                    <VBox.margin>
                                                       <Insets left="30.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="acompanhamentoMetaLabel" text="acompanhamentoMetaLabel">
+                                                <Label text="Lucro:">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="lucroLabel" text="lucroLabel">
                                                    <VBox.margin>
                                                       <Insets left="30.0" />
                                                    </VBox.margin>
                                                 </Label>
+                                                <Label fx:id="lucroPercentualLabel" layoutX="40.0" layoutY="159.0" text="lucroPercentualLabel">
+                                                   <VBox.margin>
+                                                      <Insets left="30.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label text="Prazos:">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <VBox spacing="5.0">
+                                                   <children>
+                                                      <Label text="Reserva de Emergência:">
+                                                         <padding>
+                                                            <Insets left="15.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label fx:id="reservaDeEmergenciaLabel" text="R$ 0,00">
+                                                         <VBox.margin>
+                                                            <Insets left="30.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Label text="Curto Prazo:">
+                                                         <padding>
+                                                            <Insets left="15.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label fx:id="curtoPrazoLabel" text="R$ 0,00">
+                                                         <VBox.margin>
+                                                            <Insets left="30.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Label text="Médio Prazo:">
+                                                         <padding>
+                                                            <Insets left="15.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label fx:id="medioPrazoLabel" text="R$ 0,00">
+                                                         <VBox.margin>
+                                                            <Insets left="30.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Label text="Longo Prazo:">
+                                                         <padding>
+                                                            <Insets left="15.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label fx:id="longoPrazoLabel" layoutX="40.0" layoutY="54.0" text="R$ 0,00">
+                                                         <VBox.margin>
+                                                            <Insets left="30.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
                                              </children>
                                           </VBox>
-                                       </children>
-                                    </VBox>
+                                       </content>
+                                    </ScrollPane>
                                  </children></AnchorPane>
                         </content>
                       </TitledPane>
@@ -188,10 +218,11 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="statusDoInvestimentoComboBox" layoutX="2.0" layoutY="47.0" prefWidth="150.0" promptText="Status do Investimento" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <CheckComboBox fx:id="investidorComboBox" layoutX="2.0" layoutY="84.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <CheckComboBox fx:id="tipoDeInvestimentoComboBox" layoutX="2.0" layoutY="121.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <CheckComboBox fx:id="corretoraComboBox" layoutX="2.0" layoutY="158.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
-                  <CheckBox fx:id="marcarMelhorEPiorEficienciaCheckBox" layoutX="2.0" layoutY="195.0" mnemonicParsing="false" text="Marcar Melhor e Pior Eficiência" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="investidorComboBox" layoutX="2.0" layoutY="82.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="tipoDeInvestimentoComboBox" layoutX="2.0" layoutY="117.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="corretoraComboBox" layoutX="2.0" layoutY="152.0" prefWidth="150.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                  <CheckComboBox fx:id="prazoComboBox" layoutX="2.0" layoutY="187.0" prefHeight="25.0" prefWidth="216.0" />
+                  <CheckBox fx:id="marcarMelhorEPiorEficienciaCheckBox" layoutX="2.0" layoutY="222.0" mnemonicParsing="false" text="Marcar Melhor e Pior Eficiência" />
                   <Button defaultButton="true" layoutX="69.0" layoutY="286.0" mnemonicParsing="false" onAction="#aplicarFiltros" prefHeight="39.0" prefWidth="216.0" text="Aplicar Filtro" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
                </children>
             </AnchorPane>
