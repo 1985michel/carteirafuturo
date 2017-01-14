@@ -18,6 +18,7 @@ import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.Meta;
 import com.carteirafuturo.model.TipoDeInvestimento;
 import com.carteirafuturo.view.ApresentacaoLabelsController;
+import com.carteirafuturo.view.AtualizaCotacaoAcaoController;
 import com.carteirafuturo.view.AtualizaCotacaoController;
 import com.carteirafuturo.view.AtualizarEDeletarCorretoraController;
 import com.carteirafuturo.view.AtualizarEDeletarInvestidorController;
@@ -239,6 +240,52 @@ public class MainApp extends Application {
 
 			// Dá ao controlador acesso ao MainApp
 			AtualizaCotacaoController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.setApresentacaoLabelsController(apCtrl);
+			
+
+			// Criando o dialogStage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Atualiza Cotação");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setResizable(true);
+			// dialogStage.getIcons().add(new
+			// Image("file:resources/images/edit.png"));
+			Scene scene = new Scene(page);
+			//addPersonalStyle(scene);
+			dialogStage.setScene(scene);
+
+			// Dando ao controlador poderes sobre seu próprio dialogStage
+			controller.setDialogStage(dialogStage);
+			
+			//Setando o investimento que vai ser trabalhado
+			controller.setInvestimento(i);
+			
+			//bloqueando recisase
+			dialogStage.setResizable(false);
+
+			// Show
+			
+			dialogStage.showAndWait();
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showAtualizaCotacaoAcaoOverview(InvestimentoFX i, ApresentacaoLabelsController apCtrl) {
+		try {
+
+			// Load o FXML
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/AtualizaCotacaoAcaoOverview.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Dá ao controlador acesso ao MainApp
+			AtualizaCotacaoAcaoController controller = loader.getController();
 			controller.setMainApp(this);
 			controller.setApresentacaoLabelsController(apCtrl);
 			

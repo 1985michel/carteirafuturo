@@ -89,7 +89,7 @@ public class ApresentacaoLabelsController {
 
 	@FXML
 	public void atualizarCotacao() {
-		this.mainApp.showAtualizaCotacaoOverview(i, this);
+		this.mainApp.showAtualizaCotacaoAcaoOverview(i, this);
 	}
 
 	public void povoarDados() {
