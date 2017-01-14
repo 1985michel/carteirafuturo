@@ -10,6 +10,7 @@ import com.carteirafuturo.model.InvestimentoFX;
 import com.carteirafuturo.model.TextFieldMoney;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -46,6 +47,9 @@ public class AtualizaCotacaoAcaoController {
 
     @FXML
     private TextField qtdPapeisTextField;
+    
+    @FXML
+    private Accordion accordion;
 
 	/**
 	 * Ligando ao main
@@ -71,6 +75,8 @@ public class AtualizaCotacaoAcaoController {
 			okButton.setDisable(false);
 			qtdPapeisTextField.setStyle("");
 		});
+		
+		accordion.setExpandedPane(accordion.getPanes().get(0));
 	}
 
 	/**
